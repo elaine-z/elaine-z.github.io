@@ -84,28 +84,25 @@
 
 
 
-<meta name="description" content="by Elaine 2016/12/05
-
-什么是offsetParent对象offsetParent对象是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null
+<meta name="description" content="什么是offsetParent对象offsetParent对象是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null
 offsetLeft与offsetTop
-如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的marg">
+如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的margin + border值
+若没有，offset">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js中DOM元素的尺寸及大小">
 <meta property="og:url" content="http://yoursite.com/2016/12/05/js中DOM元素的尺寸及大小/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="by Elaine 2016/12/05
-
-什么是offsetParent对象offsetParent对象是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null
+<meta property="og:description" content="什么是offsetParent对象offsetParent对象是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null
 offsetLeft与offsetTop
-如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的marg">
-<meta property="og:updated_time" content="2017-03-02T11:38:33.295Z">
+如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的margin + border值
+若没有，offset">
+<meta property="og:updated_time" content="2017-03-02T13:51:31.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js中DOM元素的尺寸及大小">
-<meta name="twitter:description" content="by Elaine 2016/12/05
-
-什么是offsetParent对象offsetParent对象是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null
+<meta name="twitter:description" content="什么是offsetParent对象offsetParent对象是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null
 offsetLeft与offsetTop
-如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的marg">
+如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的margin + border值
+若没有，offset">
 
 
 
@@ -332,10 +329,7 @@ offsetLeft与offsetTop
       
 
       
-        <blockquote>
-<p>by Elaine 2016/12/05</p>
-</blockquote>
-<h3 id="什么是offsetParent对象"><a href="#什么是offsetParent对象" class="headerlink" title="什么是offsetParent对象"></a>什么是offsetParent对象</h3><p>offsetParent对象是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null</p>
+        <h3 id="什么是offsetParent对象"><a href="#什么是offsetParent对象" class="headerlink" title="什么是offsetParent对象"></a>什么是offsetParent对象</h3><p>offsetParent对象是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null</p>
 <h3 id="offsetLeft与offsetTop"><a href="#offsetLeft与offsetTop" class="headerlink" title="offsetLeft与offsetTop"></a>offsetLeft与offsetTop</h3><ol>
 <li>如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的margin + border值</li>
 <li>若没有，offsetTop则为本身的margin + 所有祖先元素的margin + padding + border值</li>
@@ -343,12 +337,16 @@ offsetLeft与offsetTop
 </ol>
 <h3 id="offsetWidth、clientWidth、scrollWidth："><a href="#offsetWidth、clientWidth、scrollWidth：" class="headerlink" title="offsetWidth、clientWidth、scrollWidth："></a>offsetWidth、clientWidth、scrollWidth：</h3><p> offsetWidth指绝对宽度 = 内容宽度 + padding + scrollbar + border；</p>
 <p>clientWidth内容可视区域 = 内容宽度 + padding * 2，不包括滚动条；</p>
-<p>scrollWidth获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的margin <em> 2 + 滚动内容的border </em> 2 + 滚动内容的padding <em> 2 +滚动内容父元素的padding </em> 2；？？</p>
+<p>scrollWidth获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的margin + 滚动内容的border <em> 2 + 滚动内容的padding </em> 2 +滚动内容父元素的padding；</p>
+<p>scrollHeight获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的margin <em> 2 + 滚动内容的border </em> 2 + 滚动内容的padding <em> 2 +滚动内容父元素的padding </em> 2；</p>
 <p>offsetHeight、clientHeight、scrollHeight与上面算法相似</p>
 <p>注：指定的width = 内容宽度 + scrollbar</p>
 <h3 id="clientLeft、scrollLeft与object-style-left"><a href="#clientLeft、scrollLeft与object-style-left" class="headerlink" title="clientLeft、scrollLeft与object.style.left"></a>clientLeft、scrollLeft与object.style.left</h3><p>offsetleft返回的是数字，而object.style.left返回的是该object中内嵌样式style中left带px的字符串</p>
-<p>scrollleft设置或获取的对象最左端和对象内容的最左端的距离；？？</p>
+<p>scrollleft设置或获取的对象最左端和对象内容的最左端的距离；</p>
 <p>clientleft是指获取对象的上边框的宽度只与本身的border有关；</p>
+<blockquote>
+<p>by 周维玮 2016/12/05</p>
+</blockquote>
 
       
     </div>
