@@ -92,7 +92,7 @@ offsetLeft与offsetTop offsetTop和offsetLeft表示该元素的左上角（边�
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="什么是offsetParent对象为了方便后面的解释，先来了解一下offsetParent对象，它是是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null
 offsetLeft与offsetTop offsetTop和offsetLeft表示该元素的左上角（边框外边缘）与已定位的父容器（offsetParent对象）左上角的距离。即：">
-<meta property="og:updated_time" content="2017-03-02T15:52:16.871Z">
+<meta property="og:updated_time" content="2017-03-03T11:14:52.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js中DOM元素的尺寸及大小">
 <meta name="twitter:description" content="什么是offsetParent对象为了方便后面的解释，先来了解一下offsetParent对象，它是是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null
@@ -331,7 +331,7 @@ offsetLeft与offsetTop offsetTop和offsetLeft表示该元素的左上角（边�
 <li>如果存在offsetParent祖先元素，则offsetTop为offsetParent祖先元素的padding + 本身元素的margin + 其两者之间的层次元素的margin + padding + border值；offsetHeight与之相同</li>
 </ol>
 <p>注：如果存在边距重叠的现象，也会影响到offsetTop，重叠部分取重叠后的最大值</p>
-<h3 id="offsetWidth、clientWidth、scrollWidth："><a href="#offsetWidth、clientWidth、scrollWidth：" class="headerlink" title="offsetWidth、clientWidth、scrollWidth："></a>offsetWidth、clientWidth、scrollWidth：</h3><p> offsetWidth指绝对宽度 = 内容宽度 + padding + scrollbar + border；</p>
+<h3 id="offsetWidth、clientWidth、scrollWidth："><a href="#offsetWidth、clientWidth、scrollWidth：" class="headerlink" title="offsetWidth、clientWidth、scrollWidth："></a>offsetWidth、clientWidth、scrollWidth：</h3><p> offsetWidth指绝对宽度 = 内容宽度 + padding <em> 2 + scrollbar + border </em> 2；</p>
 <p>clientWidth内容可视区域 = 内容宽度 + padding * 2，不包括滚动条；</p>
 <p>scrollWidth获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的margin + 滚动内容的border <em> 2 + 滚动内容的padding </em> 2 +滚动内容父元素的padding；</p>
 <p>scrollHeight获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的margin <em> 2 + 滚动内容的border </em> 2 + 滚动内容的padding <em> 2 +滚动内容父元素的padding </em> 2；</p>
