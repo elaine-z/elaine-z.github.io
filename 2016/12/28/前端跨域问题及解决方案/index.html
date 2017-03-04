@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js," />
+  <meta name="keywords" content="前端跨域," />
 
 
 
@@ -84,16 +84,26 @@
 
 
 
-<meta name="description" content="总结一下js中DOM元素的offset、client、scroll等的区别">
+<meta name="description" content="前端跨域问题及解决方案
+前言之前在与后端合作的小demo中遇到了跨域的问题，先试采用了jsonp解决，但是后端由于不是用的原生写，若要用jsonp需要设置，于是改用了cors解决跨域问题，下来后发现跨域有很多其他种方法解决，现在对这些方法做一些总结。
+同源策略前端跨域问题的存在是由于浏览器的同源策略，其出于防范跨站脚本攻击，禁止客户端脚本（如js）对不同域的服务器进行跨站调用，那么什么是同源策略呢">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js中DOM元素的尺寸及大小">
-<meta property="og:url" content="http://yoursite.com/2016/12/05/js中DOM元素的尺寸及大小/index.html">
+<meta property="og:title" content="前端跨域问题及其解决方案">
+<meta property="og:url" content="http://yoursite.com/2016/12/28/前端跨域问题及解决方案/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="总结一下js中DOM元素的offset、client、scroll等的区别">
-<meta property="og:updated_time" content="2017-03-04T07:16:34.861Z">
+<meta property="og:description" content="前端跨域问题及解决方案
+前言之前在与后端合作的小demo中遇到了跨域的问题，先试采用了jsonp解决，但是后端由于不是用的原生写，若要用jsonp需要设置，于是改用了cors解决跨域问题，下来后发现跨域有很多其他种方法解决，现在对这些方法做一些总结。
+同源策略前端跨域问题的存在是由于浏览器的同源策略，其出于防范跨站脚本攻击，禁止客户端脚本（如js）对不同域的服务器进行跨站调用，那么什么是同源策略呢">
+<meta property="og:image" content="http://yoursite.com/../images/IMG_001.png">
+<meta property="og:image" content="http://yoursite.com/../images/IMG_002.png">
+<meta property="og:image" content="http://yoursite.com/../images/IMG_003.png">
+<meta property="og:updated_time" content="2017-03-04T12:04:30.144Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js中DOM元素的尺寸及大小">
-<meta name="twitter:description" content="总结一下js中DOM元素的offset、client、scroll等的区别">
+<meta name="twitter:title" content="前端跨域问题及其解决方案">
+<meta name="twitter:description" content="前端跨域问题及解决方案
+前言之前在与后端合作的小demo中遇到了跨域的问题，先试采用了jsonp解决，但是后端由于不是用的原生写，若要用jsonp需要设置，于是改用了cors解决跨域问题，下来后发现跨域有很多其他种方法解决，现在对这些方法做一些总结。
+同源策略前端跨域问题的存在是由于浏览器的同源策略，其出于防范跨站脚本攻击，禁止客户端脚本（如js）对不同域的服务器进行跨站调用，那么什么是同源策略呢">
+<meta name="twitter:image" content="http://yoursite.com/../images/IMG_001.png">
 
 
 
@@ -111,7 +121,7 @@
   };
 </script>
 
-  <title> js中DOM元素的尺寸及大小 | Hexo </title>
+  <title> 前端跨域问题及其解决方案 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +271,7 @@
             
             
               
-                js中DOM元素的尺寸及大小
+                前端跨域问题及其解决方案
               
             
           </h1>
@@ -273,8 +283,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-05T22:09:31+08:00" content="2016-12-05">
-              2016-12-05
+            <time itemprop="dateCreated" datetime="2016-12-28T00:00:00+08:00" content="2016-12-28">
+              2016-12-28
             </time>
           </span>
 
@@ -320,27 +330,29 @@
       
 
       
-        <p>总结一下js中DOM元素的offset、client、scroll等的区别<br><a id="more"></a></p>
-<h3 id="什么是offsetParent对象"><a href="#什么是offsetParent对象" class="headerlink" title="什么是offsetParent对象"></a>什么是offsetParent对象</h3><p>为了方便后面的解释，先来了解一下offsetParent对象，它是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null</p>
-<h3 id="offsetLeft与offsetTop"><a href="#offsetLeft与offsetTop" class="headerlink" title="offsetLeft与offsetTop"></a>offsetLeft与offsetTop</h3><p> offsetTop和offsetLeft表示该元素的左上角（边框外边缘）与已定位的父容器（offsetParent对象）左上角的距离。即：</p>
+        <p>前端跨域问题及解决方案</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前在与后端合作的小demo中遇到了跨域的问题，先试采用了jsonp解决，但是后端由于不是用的原生写，若要用jsonp需要设置，于是改用了cors解决跨域问题，下来后发现跨域有很多其他种方法解决，现在对这些方法做一些总结。</p>
+<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><p>前端跨域问题的存在是由于浏览器的同源策略，其出于防范跨站脚本攻击，禁止客户端脚本（如js）对不同域的服务器进行跨站调用，那么什么是同源策略呢？同源是指域名、协议、端口相同，不同源的客户端脚本在没有明确授权的情况下，不能读写对方的资源，以<code>https:www.baidu.com/index.html</code>为例，<code>https</code>为协议名，<code>www.baidu.com</code>为域名，默认的端口号<code>80</code>可以省略，其中任意一项不相同则为不同源。<br>因为前端的同源策略不允许js进行跨域，但跨域在交互中也经常存在，其限制在于：</p>
 <ol>
-<li>如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的margin值</li>
-<li>若没有，offsetTop则为本身的margin + 所有祖先元素的margin + padding + border值</li>
-<li>如果存在offsetParent祖先元素，则offsetTop为offsetParent祖先元素的padding + 本身元素的margin + 其两者之间的层次元素的margin + padding + border值；offsetHeight与之相同</li>
+<li>不能通过ajax方法请求不同源中的文档</li>
+<li>限制浏览器中不同域的框架之间不能进行js交互操作。</li>
 </ol>
-<p>注：如果存在边距重叠的现象，也会影响到offsetTop，重叠部分取重叠后的最大值</p>
-<h3 id="offsetWidth、clientWidth、scrollWidth："><a href="#offsetWidth、clientWidth、scrollWidth：" class="headerlink" title="offsetWidth、clientWidth、scrollWidth："></a>offsetWidth、clientWidth、scrollWidth：</h3><p> offsetWidth指绝对宽度 = 内容宽度 + 2padding + scrollbar + 2border；</p>
-<p>clientWidth内容可视区域 = 内容宽度 + 2padding，不包括滚动条；</p>
-<p>scrollWidth获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的margin + 滚动内容的2border + 滚动内容的2padding +滚动内容父元素的padding；</p>
-<p>scrollHeight获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的2margin + 滚动内容的2border  + 滚动内容的2padding +滚动内容父元素的2padding；</p>
-<p>offsetHeight、clientHeight、scrollHeight与上面算法相似</p>
-<p>注：指定的width = 内容宽度 + scrollbar</p>
-<h3 id="clientLeft、scrollLeft与object-style-left"><a href="#clientLeft、scrollLeft与object-style-left" class="headerlink" title="clientLeft、scrollLeft与object.style.left"></a>clientLeft、scrollLeft与object.style.left</h3><p>offsetleft返回的是数字，而object.style.left返回的是该object中内嵌样式style中left带px的字符串</p>
-<p>scrollleft设置或获取的对象最左端和对象内容的最左端的距离；</p>
-<p>clientleft是指获取对象的上边框的宽度只与本身的border有关；</p>
-<blockquote>
-<p>by Elaine 2016/12/05</p>
-</blockquote>
+<p>但是不管是否同源，浏览器都会发送请求，但是会识别header，查看有无Access-Control-Allow-Origin，若浏览器发现这个跨域请求的返回头信息没有该字段，就会抛出一个错误，会被 XMLHttpRequest 的 onerror 回调捕获到（其中Access-Control-Allow-Origin表示允许其声明的参数访问）。</p>
+<p><img src="../images/IMG_001.png" alt="同源策略"></p>
+<h3 id="前端跨域解决方案"><a href="#前端跨域解决方案" class="headerlink" title="前端跨域解决方案"></a>前端跨域解决方案</h3><h5 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h5><p>JSONP是一种非正式的<strong>传输协议</strong>，与json要区分开，json是一种<strong>轻量级数据格式</strong>，它们的区别就像是自行车与骑自行车的区别一样。</p>
+<p>原理：因为通过script标签引入的文件不能够被客户端的js获取到，不会影响到被引用文件的安全，其不受同源策略的限制，所以我们可以通过script标签引入一个js文件，向服务器请求JSON数据，当服务器收到请求后，将数据放在一个指定名字的回调函数中传给用户端</p>
+<p>JSONP易于实现且支持老式的浏览器，是前端使用最多的跨域请求方式，但是其也存在一些缺点，在使用JSONP时只能采用GET请求方式</p>
+<h5 id="CORS跨域资源共享"><a href="#CORS跨域资源共享" class="headerlink" title="CORS跨域资源共享"></a>CORS跨域资源共享</h5><p>跨域资源共享（CORS）是一种允许多种资源在一个web页面请求域之外的另一个域的资源的机制，它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。</p>
+<p>原理：服务器实现CORS接口，浏览器发现AJAX请求跨源后，请求时会自动添加Origin附加的头信息字段，服务器回应中也有Access-Control-Allow-Origin头信息字段</p>
+<p>此方法简单且支持所有类型的HTTP请求，但是只支持IE10及其以上的IE浏览器</p>
+<h6 id="iframe-window-name"><a href="#iframe-window-name" class="headerlink" title="iframe + window.name"></a>iframe + window.name</h6><p>原理：window对象的name属性是一个很特殊的属性，当window的location发生变化重新加载时，只要在同一个窗口中，其name的属性依旧不会变，且其可以支持2MB大小的数据；iframe有跨域访问的特性，且都存在包裹它的window对象（<code>iframe.contentWindow</code>）。但是在页面中主页面若与嵌套的iframe不同源，则无法操作框架中的任何东西，解决方案为将iframe的src指向一个跟主页面同源的地址，然后用iframe的onload事件指向跨域访问的地址。</p>
+<p><img src="../images/IMG_002.png" alt="window.name + iframe"></p>
+<h5 id="document-domain"><a href="#document-domain" class="headerlink" title="document.domain"></a>document.domain</h5><p>原理：document.domain返回的是下载当前文档的服务器域名。由于一个页面框架（iframe／frame）之间（父子或同辈）能够获取到彼此的window对象，若这两个的基础域名、协议、端口都一致，在这两个页面中设置<code>document.domain</code>为相同的域名即可，该域名必须是自身或更高一级的父域。</p>
+<h5 id="window-postMessage"><a href="#window-postMessage" class="headerlink" title="window.postMessage"></a>window.postMessage</h5><p>html5新引进的特性，可以使用它来向其它的window对象发送消息，无论这个window对象是属于同源或不同源。调用postMessage方法的window对象是指要接收消息的那一个window对象，该方法的第一个参数message为要发送的消息，类型只能为字符串；第二个参数targetOrigin用来限定接收消息的那个window对象所在的域，如果不想限定域，可以使用通配符 * 。需要接收消息的window对象，可是通过监听自身的message事件来获取传过来的消息，消息内容储存在该事件对象的data属性中。兼容IE11及其以上。</p>
+<p><img src="../images/IMG_003.png" alt="postMessage"></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>CSST：原理是通过css3 content属性获取传送内容</p>
+<p>服务器代理</p>
+<p>location.hash(FIM)</p>
 
       
     </div>
@@ -362,7 +374,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js/" rel="tag">#js</a>
+            <a href="/tags/前端跨域/" rel="tag">#前端跨域</a>
           
         </div>
       
@@ -371,17 +383,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/12/gulp使用总结/" rel="next" title="Gulp">
-                <i class="fa fa-chevron-left"></i> Gulp
+              <a href="/2016/12/05/js中DOM元素的尺寸及大小/" rel="next" title="js中DOM元素的尺寸及大小">
+                <i class="fa fa-chevron-left"></i> js中DOM元素的尺寸及大小
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/28/前端跨域问题及解决方案/" rel="prev" title="前端跨域问题及其解决方案">
-                前端跨域问题及其解决方案 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -495,7 +503,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是offsetParent对象"><span class="nav-number">1.</span> <span class="nav-text">什么是offsetParent对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#offsetLeft与offsetTop"><span class="nav-number">2.</span> <span class="nav-text">offsetLeft与offsetTop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#offsetWidth、clientWidth、scrollWidth："><span class="nav-number">3.</span> <span class="nav-text">offsetWidth、clientWidth、scrollWidth：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clientLeft、scrollLeft与object-style-left"><span class="nav-number">4.</span> <span class="nav-text">clientLeft、scrollLeft与object.style.left</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同源策略"><span class="nav-number">2.</span> <span class="nav-text">同源策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端跨域解决方案"><span class="nav-number">3.</span> <span class="nav-text">前端跨域解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JSONP"><span class="nav-number">3.0.1.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CORS跨域资源共享"><span class="nav-number">3.0.2.</span> <span class="nav-text">CORS跨域资源共享</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#iframe-window-name"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">iframe + window.name</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#document-domain"><span class="nav-number">3.0.3.</span> <span class="nav-text">document.domain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#window-postMessage"><span class="nav-number">3.0.4.</span> <span class="nav-text">window.postMessage</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a></li></ol></div>
             
           </div>
         </section>
