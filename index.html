@@ -325,29 +325,12 @@
 
       
         
-          
-            <h3 id="什么是offsetParent对象"><a href="#什么是offsetParent对象" class="headerlink" title="什么是offsetParent对象"></a>什么是offsetParent对象</h3><p>为了方便后面的解释，先来了解一下offsetParent对象，它是是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null</p>
-<h3 id="offsetLeft与offsetTop"><a href="#offsetLeft与offsetTop" class="headerlink" title="offsetLeft与offsetTop"></a>offsetLeft与offsetTop</h3><p> offsetTop和offsetLeft表示该元素的左上角（边框外边缘）与已定位的父容器（offsetParent对象）左上角的距离。即：</p>
-<ol>
-<li>如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的margin值</li>
-<li>若没有，offsetTop则为本身的margin + 所有祖先元素的margin + padding + border值</li>
-<li>如果存在offsetParent祖先元素，则offsetTop为offsetParent祖先元素的padding + 本身元素的margin + 其两者之间的层次元素的margin + padding + border值；offsetHeight与之相同</li>
-</ol>
-<p>注：如果存在边距重叠的现象，也会影响到offsetTop，重叠部分取重叠后的最大值</p>
-<h3 id="offsetWidth、clientWidth、scrollWidth："><a href="#offsetWidth、clientWidth、scrollWidth：" class="headerlink" title="offsetWidth、clientWidth、scrollWidth："></a>offsetWidth、clientWidth、scrollWidth：</h3><p> offsetWidth指绝对宽度 = 内容宽度 + padding <em> 2 + scrollbar + border </em> 2；</p>
-<p>clientWidth内容可视区域 = 内容宽度 + padding * 2，不包括滚动条；</p>
-<p>scrollWidth获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的margin + 滚动内容的border <em> 2 + 滚动内容的padding </em> 2 +滚动内容父元素的padding；</p>
-<p>scrollHeight获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的margin <em> 2 + 滚动内容的border </em> 2 + 滚动内容的padding <em> 2 +滚动内容父元素的padding </em> 2；</p>
-<p>offsetHeight、clientHeight、scrollHeight与上面算法相似</p>
-<p>注：指定的width = 内容宽度 + scrollbar</p>
-<h3 id="clientLeft、scrollLeft与object-style-left"><a href="#clientLeft、scrollLeft与object-style-left" class="headerlink" title="clientLeft、scrollLeft与object.style.left"></a>clientLeft、scrollLeft与object.style.left</h3><p>offsetleft返回的是数字，而object.style.left返回的是该object中内嵌样式style中left带px的字符串</p>
-<p>scrollleft设置或获取的对象最左端和对象内容的最左端的距离；</p>
-<p>clientleft是指获取对象的上边框的宽度只与本身的border有关；</p>
-<blockquote>
-<p>by Elaine 2016/12/05</p>
-</blockquote>
-
-          
+          <p>总结一下js中DOM元素的offset、client、scroll等的区别<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/05/js中DOM元素的尺寸及大小/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -457,28 +440,12 @@
 
       
         
-          
-            <h3 id="什么是gulp及其作用"><a href="#什么是gulp及其作用" class="headerlink" title="什么是gulp及其作用"></a>什么是gulp及其作用</h3><p>gulp是一种前端的自动化工具，可以用来搭建web服务器、文件保存时自动刷新浏览器、使用预处理器less/sass、压缩优化资源等等，方便前端架构、打包，符合工程化快速迭代的要求，对于前端来说很省事。</p>
-<h3 id="gulp与其他自动化构建工具对比"><a href="#gulp与其他自动化构建工具对比" class="headerlink" title="gulp与其他自动化构建工具对比"></a>gulp与其他自动化构建工具对比</h3><p>相对于grunt来说，gulp没有那么多繁琐的task要写，相对而言比较可控。</p>
-<p>相对于fis来说，fis在刚开始配置简单，但越到后面越麻烦，插件开发也很滞后，更新迭代慢，反馈也慢，gulp通过配置文件管理控制整个流程，比fis灵活。</p>
-<h3 id="安装配置完后的使用一般流程"><a href="#安装配置完后的使用一般流程" class="headerlink" title="安装配置完后的使用一般流程"></a>安装配置完后的使用一般流程</h3><ol>
-<li>在项目根目录下先初始化:cnpm init</li>
-<li>安装局部gulp：cnpm i gulp –save-dev</li>
-<li>在项目根目录中创建gulpfile.js文件</li>
-<li>局部安装所需要的功能插件</li>
-<li>在gulpfile.js中用require引入功能插件：var gulp = require(‘gulp’);，此步骤必须有</li>
-<li>编写任务名和对应操作：gulp.task(‘xx’, function() {gulp.src(‘目标文件地址’).pipe(执行方法).pipe(gulp.dest(‘存放地址’))})。注：可以单独使用gulp xx来执行操作。</li>
-<li>监听文件：gulp.watch(‘监听的文件路径’, [‘对应执行的xx名’])，若是监听多个文件，可以gulp.task(‘watch’, function() {gulp.watch….+other watchs})</li>
-<li>设置default：gulp.task(‘default’, [‘x1’,’x2’]，此步骤必须有</li>
-</ol>
-<p>实际操作中发现，每次更改可以改变，但是新增文件的话必须重新启动一次才行。</p>
-<p><strong>常用的五个函数</strong><br>gulp.task(name, fn)</p>
-<p>gulp.run(tasks…)尽可能多的并行运行多个task</p>
-<p>gulp.watch(glob, fn)当glob内容发生改变时，执行fn</p>
-<p>gulp.src(glob)返回一个可读的stream</p>
-<p>gulp.dest(glob)返回一个可写的stream</p>
-
-          
+          <p>Gulp简单的使用总结<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/12/gulp使用总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

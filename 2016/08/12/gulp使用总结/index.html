@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="什么是gulp及其作用gulp是一种前端的自动化工具，可以用来搭建web服务器、文件保存时自动刷新浏览器、使用预处理器less/sass、压缩优化资源等等，方便前端架构、打包，符合工程化快速迭代的要求，对于前端来说很省事。
-gulp与其他自动化构建工具对比相对于grunt来说，gulp没有那么多繁琐的task要写，相对而言比较可控。
-相对于fis来说，fis在刚开始配置简单，但越到后面越麻烦，插件">
+<meta name="description" content="Gulp简单的使用总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Gulp">
 <meta property="og:url" content="http://yoursite.com/2016/08/12/gulp使用总结/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="什么是gulp及其作用gulp是一种前端的自动化工具，可以用来搭建web服务器、文件保存时自动刷新浏览器、使用预处理器less/sass、压缩优化资源等等，方便前端架构、打包，符合工程化快速迭代的要求，对于前端来说很省事。
-gulp与其他自动化构建工具对比相对于grunt来说，gulp没有那么多繁琐的task要写，相对而言比较可控。
-相对于fis来说，fis在刚开始配置简单，但越到后面越麻烦，插件">
-<meta property="og:updated_time" content="2017-03-02T08:39:10.023Z">
+<meta property="og:description" content="Gulp简单的使用总结">
+<meta property="og:updated_time" content="2017-03-04T07:08:01.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gulp">
-<meta name="twitter:description" content="什么是gulp及其作用gulp是一种前端的自动化工具，可以用来搭建web服务器、文件保存时自动刷新浏览器、使用预处理器less/sass、压缩优化资源等等，方便前端架构、打包，符合工程化快速迭代的要求，对于前端来说很省事。
-gulp与其他自动化构建工具对比相对于grunt来说，gulp没有那么多繁琐的task要写，相对而言比较可控。
-相对于fis来说，fis在刚开始配置简单，但越到后面越麻烦，插件">
+<meta name="twitter:description" content="Gulp简单的使用总结">
 
 
 
@@ -326,25 +320,29 @@ gulp与其他自动化构建工具对比相对于grunt来说，gulp没有那么�
       
 
       
-        <h3 id="什么是gulp及其作用"><a href="#什么是gulp及其作用" class="headerlink" title="什么是gulp及其作用"></a>什么是gulp及其作用</h3><p>gulp是一种前端的自动化工具，可以用来搭建web服务器、文件保存时自动刷新浏览器、使用预处理器less/sass、压缩优化资源等等，方便前端架构、打包，符合工程化快速迭代的要求，对于前端来说很省事。</p>
+        <p>Gulp简单的使用总结<br><a id="more"></a></p>
+<h3 id="什么是gulp及其作用"><a href="#什么是gulp及其作用" class="headerlink" title="什么是gulp及其作用"></a>什么是gulp及其作用</h3><p>gulp是一种前端的自动化工具，可以用来搭建web服务器、文件保存时自动刷新浏览器、使用预处理器less/sass、压缩优化资源等等，方便前端架构、打包，符合工程化快速迭代的要求，对于前端来说很省事。</p>
 <h3 id="gulp与其他自动化构建工具对比"><a href="#gulp与其他自动化构建工具对比" class="headerlink" title="gulp与其他自动化构建工具对比"></a>gulp与其他自动化构建工具对比</h3><p>相对于grunt来说，gulp没有那么多繁琐的task要写，相对而言比较可控。</p>
 <p>相对于fis来说，fis在刚开始配置简单，但越到后面越麻烦，插件开发也很滞后，更新迭代慢，反馈也慢，gulp通过配置文件管理控制整个流程，比fis灵活。</p>
 <h3 id="安装配置完后的使用一般流程"><a href="#安装配置完后的使用一般流程" class="headerlink" title="安装配置完后的使用一般流程"></a>安装配置完后的使用一般流程</h3><ol>
-<li>在项目根目录下先初始化:cnpm init</li>
-<li>安装局部gulp：cnpm i gulp –save-dev</li>
+<li>在项目根目录下先初始化:<code>cnpm init</code></li>
+<li>安装局部gulp：<code>cnpm i gulp --save-dev</code></li>
 <li>在项目根目录中创建gulpfile.js文件</li>
 <li>局部安装所需要的功能插件</li>
-<li>在gulpfile.js中用require引入功能插件：var gulp = require(‘gulp’);，此步骤必须有</li>
-<li>编写任务名和对应操作：gulp.task(‘xx’, function() {gulp.src(‘目标文件地址’).pipe(执行方法).pipe(gulp.dest(‘存放地址’))})。注：可以单独使用gulp xx来执行操作。</li>
-<li>监听文件：gulp.watch(‘监听的文件路径’, [‘对应执行的xx名’])，若是监听多个文件，可以gulp.task(‘watch’, function() {gulp.watch….+other watchs})</li>
-<li>设置default：gulp.task(‘default’, [‘x1’,’x2’]，此步骤必须有</li>
+<li>在gulpfile.js中用require引入功能插件：<code>var gulp = require(&#39;gulp&#39;)</code>;，此步骤必须有</li>
+<li>编写任务名和对应操作：<code>gulp.task(&#39;xx&#39;, function() {gulp.src(&#39;目标文件地址&#39;).pipe(执行方法).pipe(gulp.dest(&#39;存放地址&#39;))})</code>。注：可以单独使用<code>gulp xx</code>来执行操作。</li>
+<li>监听文件：<code>gulp.watch(&#39;监听的文件路径&#39;, [&#39;对应执行的xx名&#39;])</code>，若是监听多个文件，可以<code>gulp.task(&#39;watch&#39;, function() {gulp.watch....+other watchs})</code></li>
+<li>设置default：<code>gulp.task(&#39;default&#39;, [&#39;x1&#39;,&#39;x2&#39;]</code>，此步骤必须有</li>
 </ol>
 <p>实际操作中发现，每次更改可以改变，但是新增文件的话必须重新启动一次才行。</p>
-<p><strong>常用的五个函数</strong><br>gulp.task(name, fn)</p>
-<p>gulp.run(tasks…)尽可能多的并行运行多个task</p>
-<p>gulp.watch(glob, fn)当glob内容发生改变时，执行fn</p>
-<p>gulp.src(glob)返回一个可读的stream</p>
-<p>gulp.dest(glob)返回一个可写的stream</p>
+<p><strong>常用的五个函数</strong><br><code>gulp.task(name, fn)</code></p>
+<p><code>gulp.run(tasks...)</code>尽可能多的并行运行多个task</p>
+<p><code>gulp.watch(glob, fn)</code>当glob内容发生改变时，执行fn</p>
+<p><code>gulp.src(glob)</code>返回一个可读的stream</p>
+<p><code>gulp.dest(glob)</code>返回一个可写的stream</p>
+<blockquote>
+<p>by Elaine 2016/08/12</p>
+</blockquote>
 
       
     </div>
