@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="前端,前后端技术," />
 
 
 
@@ -84,16 +84,18 @@
 
 
 
-<meta name="description" content="Accept what was and what is, and you&apos;ll have more positive energy to pursue what will be.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="本文讲解了前后端渲染方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="页面渲染">
+<meta property="og:url" content="http://yoursite.com/2016/06/12/页面渲染/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Accept what was and what is, and you&apos;ll have more positive energy to pursue what will be.">
-<meta property="og:updated_time" content="2017-03-03T11:34:22.022Z">
+<meta property="og:description" content="本文讲解了前后端渲染方式">
+<meta property="og:image" content="http://yoursite.com/images/页面渲染.png">
+<meta property="og:updated_time" content="2017-03-04T07:17:30.200Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="Accept what was and what is, and you&apos;ll have more positive energy to pursue what will be.">
+<meta name="twitter:title" content="页面渲染">
+<meta name="twitter:description" content="本文讲解了前后端渲染方式">
+<meta name="twitter:image" content="http://yoursite.com/images/页面渲染.png">
 
 
 
@@ -111,13 +113,7 @@
   };
 </script>
 
-  <title>
-  
-
-  
-    categories | Hexo
-  
-</title>
+  <title> 页面渲染 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -138,7 +134,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -248,9 +244,157 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                页面渲染
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-12T00:00:00+08:00" content="2016-06-12">
+              2016-06-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
-    
+      
+
+      
+        <p>本文讲解了前后端渲染方式<br><a id="more"></a></p>
+<h1 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h1><hr>
+<h2 id="渲染基本过程"><a href="#渲染基本过程" class="headerlink" title="渲染基本过程"></a>渲染基本过程</h2><img src="/images/页面渲染.png" class="full-image">
+<ol>
+<li>解析<br>对加载的资源进行语法解析（html、css、js），生成相应的内部数据结构（比如HTML的DOM树，JS的（对象）属性表，CSS的样式规则等等）。首先将html文档解析成DOM树。</li>
+<li>构建渲染树<br>接下来不管是内联式，外联式还是嵌入式引入的CSS样式也会被解析并渲染出另外一棵用于渲染DOM树的树-渲染树(render tree) ，渲染树包含带有颜色，尺寸等显示属性的矩形，这些矩形的顺序与显示顺序一致；</li>
+<li>排版<br>然后就是对渲染树的每个节点进行布局处理，确定其在屏幕上的显示位置；</li>
+<li>绘制<br>遍历渲染树并用ＵＩ后端层将每一个节点绘制出来。</li>
+</ol>
+<p>以上步骤是一个渐进的过程，为了提高用户体验，渲染引擎试图尽可能快的把结果显示给最终用户。它不会等到所有ＨＴＭＬ都被解析完才创建并布局渲染树。它会在从网络层获取文档内容的同时把已经接收到的局部内容先展示出来。 </p>
+<p>参考文档：<a href="http://my.oschina.net/nyp/blog/384472" target="_blank" rel="external">http://my.oschina.net/nyp/blog/384472</a></p>
+<h2 id="前后端渲染"><a href="#前后端渲染" class="headerlink" title="前后端渲染"></a>前后端渲染</h2><p>现在流行的2中渲染方式：</p>
+<ol>
+<li><p>单页面应用<br>前端通过AngularJs、EmberJs或者ReactJs等写单页应用，后端只提供数据接口，在后端看来前端页面和手机App没有区别，前后端完全分离。所以后端只需要提供一套接口，不论是移动端还是web端都可以公用同一套接口。例子：印象笔记</p>
+</li>
+<li><p>后端模版渲染<br>前端给后端提供写好的页面，让后端写模版引擎渲染页面，这是比较传统的方法，除了写模版引擎渲染页面工作，后端还要单独给手机App提供接口，前端一般比较轻松，写静态页面就可以了。但是这样导致的结果就是服务器端压力增大，降低用户体验。例子：大部分网站，比如segmentfault</p>
+</li>
+</ol>
+<p>目前看来，很多东西都是移动端，WEB，WAP。我们是不是应该写一套接口，可以让三个端来调用。现在也流行了这样的趋势。前端走MVC，服务端把view层砍掉，走restful风格，专注于数据的业务逻辑和处理。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/前后端技术/" rel="tag">#前后端技术</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/12/gulp使用总结/" rel="prev" title="Gulp">
+                Gulp <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -282,8 +426,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/IMG_0604.JPG"
@@ -333,6 +486,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#页面渲染"><span class="nav-number">1.</span> <span class="nav-text">页面渲染</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染基本过程"><span class="nav-number">1.1.</span> <span class="nav-text">渲染基本过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前后端渲染"><span class="nav-number">1.2.</span> <span class="nav-text">前后端渲染</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -436,6 +600,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
