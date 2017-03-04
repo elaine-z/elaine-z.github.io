@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://yoursite.com/../images/IMG_001.png">
 <meta property="og:image" content="http://yoursite.com/../images/IMG_002.png">
 <meta property="og:image" content="http://yoursite.com/../images/IMG_003.png">
-<meta property="og:updated_time" content="2017-03-04T12:08:59.892Z">
+<meta property="og:updated_time" content="2017-03-04T12:15:05.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端跨域问题及其解决方案">
 <meta name="twitter:description" content="前端跨域问题及解决方案">
@@ -344,8 +344,8 @@
 <h5 id="document-domain"><a href="#document-domain" class="headerlink" title="document.domain"></a>document.domain</h5><p>原理：document.domain返回的是下载当前文档的服务器域名。由于一个页面框架（iframe／frame）之间（父子或同辈）能够获取到彼此的window对象，若这两个的基础域名、协议、端口都一致，在这两个页面中设置<code>document.domain</code>为相同的域名即可，该域名必须是自身或更高一级的父域。</p>
 <h5 id="window-postMessage"><a href="#window-postMessage" class="headerlink" title="window.postMessage"></a>window.postMessage</h5><p>html5新引进的特性，可以使用它来向其它的window对象发送消息，无论这个window对象是属于同源或不同源。调用postMessage方法的window对象是指要接收消息的那一个window对象，该方法的第一个参数message为要发送的消息，类型只能为字符串；第二个参数targetOrigin用来限定接收消息的那个window对象所在的域，如果不想限定域，可以使用通配符 * 。需要接收消息的window对象，可是通过监听自身的message事件来获取传过来的消息，消息内容储存在该事件对象的data属性中。兼容IE11及其以上。</p>
 <p><img src="../images/IMG_003.png" alt="postMessage"></p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>CSST：原理是通过css3 content属性获取传送内容</p>
-<p>服务器代理</p>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><p>CSST：原理是通过css3 content属性获取传送内容</p>
+<p>web socket:原理是在JS创建了web socket之后，会有一个HTTP请求发送到浏览器以发起连接。取得服务器响应后，建立的连接会使用HTTP升级从HTTP协议交换为web sockt协议。其是为了在一个单独的持久连接上提供全双工、双向通信</p>
 <p>location.hash(FIM)</p>
 
       
@@ -497,7 +497,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同源策略"><span class="nav-number">2.</span> <span class="nav-text">同源策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端跨域解决方案"><span class="nav-number">3.</span> <span class="nav-text">前端跨域解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JSONP"><span class="nav-number">3.0.1.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CORS跨域资源共享"><span class="nav-number">3.0.2.</span> <span class="nav-text">CORS跨域资源共享</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#iframe-window-name"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">iframe + window.name</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#document-domain"><span class="nav-number">3.0.3.</span> <span class="nav-text">document.domain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#window-postMessage"><span class="nav-number">3.0.4.</span> <span class="nav-text">window.postMessage</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同源策略"><span class="nav-number">2.</span> <span class="nav-text">同源策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端跨域解决方案"><span class="nav-number">3.</span> <span class="nav-text">前端跨域解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JSONP"><span class="nav-number">3.0.1.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CORS跨域资源共享"><span class="nav-number">3.0.2.</span> <span class="nav-text">CORS跨域资源共享</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#iframe-window-name"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">iframe + window.name</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#document-domain"><span class="nav-number">3.0.3.</span> <span class="nav-text">document.domain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#window-postMessage"><span class="nav-number">3.0.4.</span> <span class="nav-text">window.postMessage</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#其他"><span class="nav-number">3.0.5.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
