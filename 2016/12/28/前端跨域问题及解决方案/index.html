@@ -84,25 +84,19 @@
 
 
 
-<meta name="description" content="前端跨域问题及解决方案
-前言之前在与后端合作的小demo中遇到了跨域的问题，先试采用了jsonp解决，但是后端由于不是用的原生写，若要用jsonp需要设置，于是改用了cors解决跨域问题，下来后发现跨域有很多其他种方法解决，现在对这些方法做一些总结。
-同源策略前端跨域问题的存在是由于浏览器的同源策略，其出于防范跨站脚本攻击，禁止客户端脚本（如js）对不同域的服务器进行跨站调用，那么什么是同源策略呢">
+<meta name="description" content="前端跨域问题及解决方案">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端跨域问题及其解决方案">
 <meta property="og:url" content="http://yoursite.com/2016/12/28/前端跨域问题及解决方案/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前端跨域问题及解决方案
-前言之前在与后端合作的小demo中遇到了跨域的问题，先试采用了jsonp解决，但是后端由于不是用的原生写，若要用jsonp需要设置，于是改用了cors解决跨域问题，下来后发现跨域有很多其他种方法解决，现在对这些方法做一些总结。
-同源策略前端跨域问题的存在是由于浏览器的同源策略，其出于防范跨站脚本攻击，禁止客户端脚本（如js）对不同域的服务器进行跨站调用，那么什么是同源策略呢">
+<meta property="og:description" content="前端跨域问题及解决方案">
 <meta property="og:image" content="http://yoursite.com/../images/IMG_001.png">
 <meta property="og:image" content="http://yoursite.com/../images/IMG_002.png">
 <meta property="og:image" content="http://yoursite.com/../images/IMG_003.png">
-<meta property="og:updated_time" content="2017-03-04T12:04:30.144Z">
+<meta property="og:updated_time" content="2017-03-04T12:08:59.892Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端跨域问题及其解决方案">
-<meta name="twitter:description" content="前端跨域问题及解决方案
-前言之前在与后端合作的小demo中遇到了跨域的问题，先试采用了jsonp解决，但是后端由于不是用的原生写，若要用jsonp需要设置，于是改用了cors解决跨域问题，下来后发现跨域有很多其他种方法解决，现在对这些方法做一些总结。
-同源策略前端跨域问题的存在是由于浏览器的同源策略，其出于防范跨站脚本攻击，禁止客户端脚本（如js）对不同域的服务器进行跨站调用，那么什么是同源策略呢">
+<meta name="twitter:description" content="前端跨域问题及解决方案">
 <meta name="twitter:image" content="http://yoursite.com/../images/IMG_001.png">
 
 
@@ -330,7 +324,7 @@
       
 
       
-        <p>前端跨域问题及解决方案</p>
+        <p>前端跨域问题及解决方案<a id="more"></a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前在与后端合作的小demo中遇到了跨域的问题，先试采用了jsonp解决，但是后端由于不是用的原生写，若要用jsonp需要设置，于是改用了cors解决跨域问题，下来后发现跨域有很多其他种方法解决，现在对这些方法做一些总结。</p>
 <h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><p>前端跨域问题的存在是由于浏览器的同源策略，其出于防范跨站脚本攻击，禁止客户端脚本（如js）对不同域的服务器进行跨站调用，那么什么是同源策略呢？同源是指域名、协议、端口相同，不同源的客户端脚本在没有明确授权的情况下，不能读写对方的资源，以<code>https:www.baidu.com/index.html</code>为例，<code>https</code>为协议名，<code>www.baidu.com</code>为域名，默认的端口号<code>80</code>可以省略，其中任意一项不相同则为不同源。<br>因为前端的同源策略不允许js进行跨域，但跨域在交互中也经常存在，其限制在于：</p>
 <ol>
