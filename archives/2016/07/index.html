@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,16 +84,15 @@
 
 
 
-<meta name="description" content="总结一下js中DOM元素的offset、client、scroll等的区别">
-<meta property="og:type" content="article">
-<meta property="og:title" content="js中DOM元素的尺寸及大小">
-<meta property="og:url" content="http://yoursite.com/2016/12/05/js中DOM元素的尺寸及大小/index.html">
+<meta name="description" content="Accept what was and what is, and you&apos;ll have more positive energy to pursue what will be.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/archives/2016/07/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="总结一下js中DOM元素的offset、client、scroll等的区别">
-<meta property="og:updated_time" content="2017-03-04T07:16:34.861Z">
+<meta property="og:description" content="Accept what was and what is, and you&apos;ll have more positive energy to pursue what will be.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js中DOM元素的尺寸及大小">
-<meta name="twitter:description" content="总结一下js中DOM元素的offset、client、scroll等的区别">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="Accept what was and what is, and you&apos;ll have more positive energy to pursue what will be.">
 
 
 
@@ -111,7 +110,7 @@
   };
 </script>
 
-  <title> js中DOM元素的尺寸及大小 | Hexo </title>
+  <title> 归档 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -132,7 +131,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -240,164 +239,66 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 5 篇日志。 继续努力。
+    </span>
+
     
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                js中DOM元素的尺寸及大小
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-05T22:09:31+08:00" content="2016-12-05">
-              2016-12-05
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
-      
-        <p>总结一下js中DOM元素的offset、client、scroll等的区别<br><a id="more"></a></p>
-<h3 id="什么是offsetParent对象"><a href="#什么是offsetParent对象" class="headerlink" title="什么是offsetParent对象"></a>什么是offsetParent对象</h3><p>为了方便后面的解释，先来了解一下offsetParent对象，它是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null</p>
-<h3 id="offsetLeft与offsetTop"><a href="#offsetLeft与offsetTop" class="headerlink" title="offsetLeft与offsetTop"></a>offsetLeft与offsetTop</h3><p> offsetTop和offsetLeft表示该元素的左上角（边框外边缘）与已定位的父容器（offsetParent对象）左上角的距离。即：</p>
-<ol>
-<li>如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的margin值</li>
-<li>若没有，offsetTop则为本身的margin + 所有祖先元素的margin + padding + border值</li>
-<li>如果存在offsetParent祖先元素，则offsetTop为offsetParent祖先元素的padding + 本身元素的margin + 其两者之间的层次元素的margin + padding + border值；offsetHeight与之相同</li>
-</ol>
-<p>注：如果存在边距重叠的现象，也会影响到offsetTop，重叠部分取重叠后的最大值</p>
-<h3 id="offsetWidth、clientWidth、scrollWidth："><a href="#offsetWidth、clientWidth、scrollWidth：" class="headerlink" title="offsetWidth、clientWidth、scrollWidth："></a>offsetWidth、clientWidth、scrollWidth：</h3><p> offsetWidth指绝对宽度 = 内容宽度 + 2padding + scrollbar + 2border；</p>
-<p>clientWidth内容可视区域 = 内容宽度 + 2padding，不包括滚动条；</p>
-<p>scrollWidth获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的margin + 滚动内容的2border + 滚动内容的2padding +滚动内容父元素的padding；</p>
-<p>scrollHeight获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的2margin + 滚动内容的2border  + 滚动内容的2padding +滚动内容父元素的2padding；</p>
-<p>offsetHeight、clientHeight、scrollHeight与上面算法相似</p>
-<p>注：指定的width = 内容宽度 + scrollbar</p>
-<h3 id="clientLeft、scrollLeft与object-style-left"><a href="#clientLeft、scrollLeft与object-style-left" class="headerlink" title="clientLeft、scrollLeft与object.style.left"></a>clientLeft、scrollLeft与object.style.left</h3><p>offsetleft返回的是数字，而object.style.left返回的是该object中内嵌样式style中left带px的字符串</p>
-<p>scrollleft设置或获取的对象最左端和对象内容的最左端的距离；</p>
-<p>clientleft是指获取对象的上边框的宽度只与本身的border有关；</p>
-<blockquote>
-<p>by Elaine 2016/12/05</p>
-</blockquote>
-
-      
-    </div>
-
-    <div>
       
         
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/js/" rel="tag">#js</a>
-          
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
         </div>
       
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/08/12/gulp使用总结/" rel="next" title="Gulp">
-                <i class="fa fa-chevron-left"></i> Gulp
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/28/前端跨域问题及解决方案/" rel="prev" title="前端跨域问题及其解决方案">
-                前端跨域问题及其解决方案 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
-      
-    </footer>
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/07/12/require/" itemprop="url">
+              
+                <span itemprop="name">require初级一</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-07-12T00:00:00+08:00"
+              content="2016-07-12" >
+          07-12
+        </time>
+      </div>
+
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+    
+
+  </section>
+
+  
+
 
 
           </div>
@@ -405,10 +306,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -428,17 +325,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/IMG_0604.JPG"
@@ -488,17 +376,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是offsetParent对象"><span class="nav-number">1.</span> <span class="nav-text">什么是offsetParent对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#offsetLeft与offsetTop"><span class="nav-number">2.</span> <span class="nav-text">offsetLeft与offsetTop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#offsetWidth、clientWidth、scrollWidth："><span class="nav-number">3.</span> <span class="nav-text">offsetWidth、clientWidth、scrollWidth：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clientLeft、scrollLeft与object-style-left"><span class="nav-number">4.</span> <span class="nav-text">clientLeft、scrollLeft与object.style.left</span></a></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -602,9 +479,11 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   

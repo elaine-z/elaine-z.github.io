@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="js," />
+  <meta name="keywords" content="require," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="总结一下js中DOM元素的offset、client、scroll等的区别">
+<meta name="description" content="require初级使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js中DOM元素的尺寸及大小">
-<meta property="og:url" content="http://yoursite.com/2016/12/05/js中DOM元素的尺寸及大小/index.html">
+<meta property="og:title" content="require初级一">
+<meta property="og:url" content="http://yoursite.com/2016/07/12/require/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="总结一下js中DOM元素的offset、client、scroll等的区别">
-<meta property="og:updated_time" content="2017-03-04T07:16:34.861Z">
+<meta property="og:description" content="require初级使用">
+<meta property="og:updated_time" content="2017-03-06T15:53:31.952Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="js中DOM元素的尺寸及大小">
-<meta name="twitter:description" content="总结一下js中DOM元素的offset、client、scroll等的区别">
+<meta name="twitter:title" content="require初级一">
+<meta name="twitter:description" content="require初级使用">
 
 
 
@@ -111,7 +111,7 @@
   };
 </script>
 
-  <title> js中DOM元素的尺寸及大小 | Hexo </title>
+  <title> require初级一 | Hexo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -261,7 +261,7 @@
             
             
               
-                js中DOM元素的尺寸及大小
+                require初级一
               
             
           </h1>
@@ -273,8 +273,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-05T22:09:31+08:00" content="2016-12-05">
-              2016-12-05
+            <time itemprop="dateCreated" datetime="2016-07-12T00:00:00+08:00" content="2016-07-12">
+              2016-07-12
             </time>
           </span>
 
@@ -287,8 +287,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/js/" itemprop="url" rel="index">
-                    <span itemprop="name">js</span>
+                  <a href="/categories/require/" itemprop="url" rel="index">
+                    <span itemprop="name">require</span>
                   </a>
                 </span>
 
@@ -320,27 +320,20 @@
       
 
       
-        <p>总结一下js中DOM元素的offset、client、scroll等的区别<br><a id="more"></a></p>
-<h3 id="什么是offsetParent对象"><a href="#什么是offsetParent对象" class="headerlink" title="什么是offsetParent对象"></a>什么是offsetParent对象</h3><p>为了方便后面的解释，先来了解一下offsetParent对象，它是指元素最近的定位（relative,absolute）祖先元素，递归上溯，如果没有祖先元素是定位的话，会返回null</p>
-<h3 id="offsetLeft与offsetTop"><a href="#offsetLeft与offsetTop" class="headerlink" title="offsetLeft与offsetTop"></a>offsetLeft与offsetTop</h3><p> offsetTop和offsetLeft表示该元素的左上角（边框外边缘）与已定位的父容器（offsetParent对象）左上角的距离。即：</p>
-<ol>
-<li>如果存在offsetParent父元素，offsetTop是offsetParent父元素的padding + 本身元素的margin值</li>
-<li>若没有，offsetTop则为本身的margin + 所有祖先元素的margin + padding + border值</li>
-<li>如果存在offsetParent祖先元素，则offsetTop为offsetParent祖先元素的padding + 本身元素的margin + 其两者之间的层次元素的margin + padding + border值；offsetHeight与之相同</li>
+        <p>require初级使用<br><a id="more"></a></p>
+<h3 id="什么是AMD规范"><a href="#什么是AMD规范" class="headerlink" title="什么是AMD规范"></a>什么是AMD规范</h3><p>AMD是异步模块定义，采用异步的方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。</p>
+<h3 id="使用require的好处"><a href="#使用require的好处" class="headerlink" title="使用require的好处"></a>使用require的好处</h3><ol>
+<li>将变量封装在模块内，有效防止命名冲突；</li>
+<li>解决不同js文件之间的依赖；</li>
+<li>代码模块化，方便复用。</li>
+<li>实现js文件的异步加载，避免网页是去响应<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3></li>
+<li><code>requirejs.config({baseUrl:&#39;指定路径&#39;,path:{别名：‘全名’}})</code>命名模块的别名</li>
+<li><code>requirejs([’引入的模块别名‘，function（参数值代替引入模块）{}])</code>引入模块，</li>
+<li><code>define([&#39;&#39;],function(参数){....return{对象：function(){}}}</code>编写模块<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3></li>
+<li>引入<code>require.js data-main</code>指定入口文件，省略后缀</li>
+<li>若不符合AMD规范的，需要配置shim属性和shim中的<code>exports</code>属性。即在config中添加<code>shim：{别名：{exports:&#39;名&#39;}}</code></li>
+<li>不符合AMD规范，还依赖其他控件的，需要配置shim属性里面的deps属性<code>shim:{名：{deps:[&#39;依赖的控件&#39;]}}</code></li>
 </ol>
-<p>注：如果存在边距重叠的现象，也会影响到offsetTop，重叠部分取重叠后的最大值</p>
-<h3 id="offsetWidth、clientWidth、scrollWidth："><a href="#offsetWidth、clientWidth、scrollWidth：" class="headerlink" title="offsetWidth、clientWidth、scrollWidth："></a>offsetWidth、clientWidth、scrollWidth：</h3><p> offsetWidth指绝对宽度 = 内容宽度 + 2padding + scrollbar + 2border；</p>
-<p>clientWidth内容可视区域 = 内容宽度 + 2padding，不包括滚动条；</p>
-<p>scrollWidth获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的margin + 滚动内容的2border + 滚动内容的2padding +滚动内容父元素的padding；</p>
-<p>scrollHeight获取对象的滚动宽度，滚动内容的宽度 + 滚动内容的2margin + 滚动内容的2border  + 滚动内容的2padding +滚动内容父元素的2padding；</p>
-<p>offsetHeight、clientHeight、scrollHeight与上面算法相似</p>
-<p>注：指定的width = 内容宽度 + scrollbar</p>
-<h3 id="clientLeft、scrollLeft与object-style-left"><a href="#clientLeft、scrollLeft与object-style-left" class="headerlink" title="clientLeft、scrollLeft与object.style.left"></a>clientLeft、scrollLeft与object.style.left</h3><p>offsetleft返回的是数字，而object.style.left返回的是该object中内嵌样式style中left带px的字符串</p>
-<p>scrollleft设置或获取的对象最左端和对象内容的最左端的距离；</p>
-<p>clientleft是指获取对象的上边框的宽度只与本身的border有关；</p>
-<blockquote>
-<p>by Elaine 2016/12/05</p>
-</blockquote>
 
       
     </div>
@@ -362,7 +355,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js/" rel="tag">#js</a>
+            <a href="/tags/require/" rel="tag">#require</a>
           
         </div>
       
@@ -371,16 +364,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/12/gulp使用总结/" rel="next" title="Gulp">
-                <i class="fa fa-chevron-left"></i> Gulp
+              <a href="/2016/06/12/页面渲染/" rel="next" title="页面渲染">
+                <i class="fa fa-chevron-left"></i> 页面渲染
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/28/前端跨域问题及解决方案/" rel="prev" title="前端跨域问题及其解决方案">
-                前端跨域问题及其解决方案 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/12/gulp使用总结/" rel="prev" title="Gulp">
+                Gulp <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -495,7 +488,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是offsetParent对象"><span class="nav-number">1.</span> <span class="nav-text">什么是offsetParent对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#offsetLeft与offsetTop"><span class="nav-number">2.</span> <span class="nav-text">offsetLeft与offsetTop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#offsetWidth、clientWidth、scrollWidth："><span class="nav-number">3.</span> <span class="nav-text">offsetWidth、clientWidth、scrollWidth：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clientLeft、scrollLeft与object-style-left"><span class="nav-number">4.</span> <span class="nav-text">clientLeft、scrollLeft与object.style.left</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是AMD规范"><span class="nav-number">1.</span> <span class="nav-text">什么是AMD规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用require的好处"><span class="nav-number">2.</span> <span class="nav-text">使用require的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">3.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li></ol></div>
             
           </div>
         </section>
