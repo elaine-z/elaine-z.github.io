@@ -90,14 +90,14 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/28/前端跨域问题及解决方案/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="前端跨域问题及解决方案">
-<meta property="og:image" content="http://yoursite.com/../images/IMG_001.png">
-<meta property="og:image" content="http://yoursite.com/../images/IMG_002.png">
-<meta property="og:image" content="http://yoursite.com/../images/IMG_003.png">
-<meta property="og:updated_time" content="2017-03-04T12:18:12.357Z">
+<meta property="og:image" content="http://yoursite.com/images/IMG_001.png">
+<meta property="og:image" content="http://yoursite.com/images/IMG_002.png">
+<meta property="og:image" content="http://yoursite.com/images/IMG_003.png">
+<meta property="og:updated_time" content="2017-03-08T03:07:11.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端跨域问题及其解决方案">
 <meta name="twitter:description" content="前端跨域问题及解决方案">
-<meta name="twitter:image" content="http://yoursite.com/../images/IMG_001.png">
+<meta name="twitter:image" content="http://yoursite.com/images/IMG_001.png">
 
 
 
@@ -332,7 +332,7 @@
 <li>限制浏览器中不同域的框架之间不能进行js交互操作。</li>
 </ol>
 <p>但是不管是否同源，浏览器都会发送请求，但是会识别header，查看有无Access-Control-Allow-Origin，若浏览器发现这个跨域请求的返回头信息没有该字段，就会抛出一个错误，会被 XMLHttpRequest 的 onerror 回调捕获到（其中Access-Control-Allow-Origin表示允许其声明的参数访问）。</p>
-<p><img src="../images/IMG_001.png" alt="同源策略"></p>
+<p><img src="/images/IMG_001.png" alt="同源策略"></p>
 <h3 id="前端跨域解决方案"><a href="#前端跨域解决方案" class="headerlink" title="前端跨域解决方案"></a>前端跨域解决方案</h3><h5 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h5><p>JSONP是一种非正式的<strong>传输协议</strong>，与json要区分开，json是一种<strong>轻量级数据格式</strong>，它们的区别就像是自行车与骑自行车的区别一样。</p>
 <p>原理：因为通过script标签引入的文件不能够被客户端的js获取到，不会影响到被引用文件的安全，其不受同源策略的限制，所以我们可以通过script标签引入一个js文件，向服务器请求JSON数据，当服务器收到请求后，将数据放在一个指定名字的回调函数中传给用户端</p>
 <p>JSONP易于实现且支持老式的浏览器，是前端使用最多的跨域请求方式，但是其也存在一些缺点，在使用JSONP时只能采用GET请求方式</p>
@@ -340,10 +340,10 @@
 <p>原理：服务器实现CORS接口，浏览器发现AJAX请求跨源后，请求时会自动添加Origin附加的头信息字段，服务器回应中也有Access-Control-Allow-Origin头信息字段</p>
 <p>此方法简单且支持所有类型的HTTP请求，但是只支持IE10及其以上的IE浏览器</p>
 <h5 id="iframe-window-name"><a href="#iframe-window-name" class="headerlink" title="iframe + window.name"></a>iframe + window.name</h5><p>原理：window对象的name属性是一个很特殊的属性，当window的location发生变化重新加载时，只要在同一个窗口中，其name的属性依旧不会变，且其可以支持2MB大小的数据；iframe有跨域访问的特性，且都存在包裹它的window对象（<code>iframe.contentWindow</code>）。但是在页面中主页面若与嵌套的iframe不同源，则无法操作框架中的任何东西，解决方案为将iframe的src指向一个跟主页面同源的地址，然后用iframe的onload事件指向跨域访问的地址。</p>
-<p><img src="../images/IMG_002.png" alt="window.name + iframe"></p>
+<p><img src="/images/IMG_002.png" alt="window.name + iframe"></p>
 <h5 id="document-domain"><a href="#document-domain" class="headerlink" title="document.domain"></a>document.domain</h5><p>原理：document.domain返回的是下载当前文档的服务器域名。由于一个页面框架（iframe／frame）之间（父子或同辈）能够获取到彼此的window对象，若这两个的基础域名、协议、端口都一致，在这两个页面中设置<code>document.domain</code>为相同的域名即可，该域名必须是自身或更高一级的父域。</p>
 <h5 id="window-postMessage"><a href="#window-postMessage" class="headerlink" title="window.postMessage"></a>window.postMessage</h5><p>html5新引进的特性，可以使用它来向其它的window对象发送消息，无论这个window对象是属于同源或不同源。调用postMessage方法的window对象是指要接收消息的那一个window对象，该方法的第一个参数message为要发送的消息，类型只能为字符串；第二个参数targetOrigin用来限定接收消息的那个window对象所在的域，如果不想限定域，可以使用通配符 * 。需要接收消息的window对象，可是通过监听自身的message事件来获取传过来的消息，消息内容储存在该事件对象的data属性中。兼容IE11及其以上。</p>
-<p><img src="../images/IMG_003.png" alt="postMessage"></p>
+<p><img src="/images/IMG_003.png" alt="postMessage"></p>
 <h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><p>CSST：原理是通过css3 content属性获取传送内容</p>
 <p>web socket:原理是在JS创建了web socket之后，会有一个HTTP请求发送到浏览器以发起连接。取得服务器响应后，建立的连接会使用HTTP升级从HTTP协议交换为web sockt协议。其是为了在一个单独的持久连接上提供全双工、双向通信</p>
 <p>location.hash(FIM)</p>
