@@ -1,0 +1,1804 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="var protocol = window.location.protocol;
+        document.write(&apos;&apos;);
+    
+
+  
+ 
+
+    TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客
+        - 博客频道 - CSDN.NET">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2017/03/11/TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="var protocol = window.location.protocol;
+        document.write(&apos;&apos;);
+    
+
+  
+ 
+
+    TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客
+        - 博客频道 - CSDN.NET">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/100x100.jpg">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/100x100.jpg">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/new.gif">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/new.gif">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/new.gif">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/ico_list.gif">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/ico_summary.gif">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/ico_rss.gif">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/category_icon.jpg">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/arrow_triangle _down.jpg">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/arrow_triangle_up.jpg">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/20160914140730874">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/20160914100821925">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/20160914101234549">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/blog-icon-reply.png">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/top.png">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/1_guyuealian.jpg">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/chizhiyiheng.png">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/blog4.png">
+<meta property="og:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/gongshang_logos.gif">
+<meta property="og:updated_time" content="2017-03-11T15:29:56.813Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="var protocol = window.location.protocol;
+        document.write(&apos;&apos;);
+    
+
+  
+ 
+
+    TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客
+        - 博客频道 - CSDN.NET">
+<meta name="twitter:image" content="http://yoursite.com/./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/100x100.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title>  | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T23:29:48+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)http://blog.csdn.net/guyuealian/article/details/52535294 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+
+    <script type="text/javascript" async src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/xcpm"></script><script src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/hm.js"></script><script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script><script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/repoAddr2.js"></script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp"><link rel="alternate" media="handheld" href="http://blog.csdn.net/guyuealian/article/details/52535294#">
+
+    <title>TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客
+        - 博客频道 - CSDN.NET</title>
+    
+    <meta name="description" content="TCP建立连接三次握手和释放连接四次握手    【尊重原创，转载请注明出处】http://blog.csdn.net/guyuealian/article/details/52525724     在谈及TCP建立连接和释放连接过程，先来简单认识一下TCP报文段首部格式（这里只是简单说明，具体请查看相关教程），这里有几个重要的概念    序列号：本报文段所发送的数据的第">
+    <script src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/jquery.js" type="text/javascript"></script>
+      <script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/jquery-version.js"></script>
+    <script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/ad.js"></script>
+        <!--new top-->
+       
+        <link rel="stylesheet" href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/index.css">
+        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/tracking(1).js"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/style.css">
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="http://blog.csdn.net/guyuealian/rss/list">
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico">
+    <link type="text/css" rel="stylesheet" href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/default.css">
+ 
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<script src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/share.js"></script><link rel="stylesheet" type="text/css" href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/job_reco.css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><link href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/bdsstyle.css" rel="stylesheet" type="text/css"></head>
+<body><div id="MathJax_Message" style="display: none;"></div><iframe frameborder="0" style="display: none;" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/saved_resource.html"></iframe>
+
+
+    <!-- 广告位开始 -->
+        <ins data-revive-zoneid="149" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/html.js" type="text/javascript"></script><div class="csdn-toolbar csdn-toolbar-skin-black ">        <div class="container row center-block ">          <div class="col-md-3 pull-left logo clearfix"><a href="http://www.csdn.net/?ref=toolbar" title="CSDN首页" target="_blank" class="icon"></a><a title="频道首页" href="http://blog.csdn.net/?ref=toolbar_logo" class="img blog-icon" target="_blank" rel="external"></a></div>          <div class="pull-right login-wrap unlogin">            <ul class="btns">              <li class="loginlink"><a href="https://passport.csdn.net/account/login?ref=toolbar" target="_top">登录&nbsp;</a>|<a target="_top" href="http://passport.csdn.net/account/mobileregister?ref=toolbar&amp;action=mobileRegister">&nbsp;注册</a></li>              <li class="search">                <div class="icon on-search-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <form action="http://so.csdn.net/search" method="get" target="_blank">                      <input type="hidden" value="toolbar" name="ref" accesskey="2">                      <div class="border">                        <input placeholder="搜索" type="text" value="" name="q" accesskey="2"><span class="icon-enter-sm"></span>                      </div>                    </form>                  </div>                </div>              </li>              <li class="favor">                <div class="icon on-favor-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div style="display:none;" class="favor-success"><span class="msg">收藏成功</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <div style="display:none;" class="favor-failed"><span class="icon-danger-lg"></span><span class="msg">收藏失败，请重新收藏</span>                      <div class="btns"><span class="btn btn-primary ok">确定</span></div>                    </div>                    <form role="form" class="form-horizontal favor-form">                      <div class="form-group">                        <div class="clearfix">                          <label for="input-title" class="col-sm-2 control-label"><span class="red_txt">*</span>标题</label>                          <div class="col-sm-10">                            <input id="inputTitle" type="text" placeholder="" class="title form-control">                          </div>                        </div>                        <div class="alert alert-danger"><strong></strong>标题不能为空</div>                      </div>                      <div class="form-group" style="display:none;">                        <label for="input-url" class="col-sm-2 control-label">网址</label>                        <div class="col-sm-10">                          <input id="input-url" type="text" placeholder="" class="url form-control">                        </div>                      </div>                      <div class="form-group">                        <label for="input-tag" class="col-sm-2 tag control-label">标签</label>                        <div class="col-sm-10">                          <input id="input-tag" type="text" class="form-control tag">                        </div>                      </div>                      <div class="form-group">                        <label for="input-description" class="description col-sm-2 control-label">位置</label>                        <div class="col-sm-10">                          <div class="my_lib_box">                            个人主页&nbsp;-&nbsp;<a href="http://my.csdn.net/" target="_blank">我的知识</a>                          </div>                          <div class="checkbox">                            <div class="pull-left">                              <label>                                <input type="checkbox" name="share" class="save_lib_map">同时保存至：                              </label>                            </div>                            <div class="pull-left">                              <div class="dropdown">                                <button id="toolbar_sele_map" type="button">                                  选择知识图谱                                  <i class="fa fa-chevron-down"></i>                                </button>                                <div class="top_arr"></div>                                <div class="outside">                                  <ul class="dropdown-menu" id="toolbar_Design_knowledge">                                  </ul>                                </div>                              </div>                            </div>                            <div class="pull-left new_txt">                              <a href="http://lib.csdn.net/my/create/structure" target="_blank">新建？</a>                            </div>                          </div>                        </div>                      </div>                      <div class="form-group">                        <div class="col-sm-offset-2 col-sm-10 ft">                          <div class="col-sm-4 pull-left" style="display:none">                            <div class="checkbox">                              <label>                                <input type="checkbox" name="share" checked="checked" class="share">公开                              </label>                            </div>                          </div>                          <div class="col-sm-8 pull-right favor-btns">                            <button type="button" class="cancel btn btn-default">取消</button>                            <button type="submit" class="submit btn btn-primary">收藏</button>                          </div>                        </div>                      </div>                    </form>                  </div>                </div>              </li>              <li class="notify">                <div style="display:none" class="number"></div>                <div style="display:none" class="icon-hasnotes-sm"></div>                <div id="header_notice_num"></div>                <div class="icon on-notify-icon">                  <div class="wrap">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div id="note1" class="csdn_note">                      <div class="box"></div>                    </div>                  </div>                </div>              </li>              <li class="ugc">                <div class="icon on-ugc-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <dl>                      <dt><a href="http://geek.csdn.net/news/expert?ref=toolbar" target="_blank" class="p-news clearfix" style="display:none;"><em class="icon"></em><span>分享资讯</span></a></dt>                      <dt style="border: none;"><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-doc clearfix"><em class="icon"></em><span>传PPT/文档</span></a></dt>                      <dt><a href="http://bbs.csdn.net/topics/new?ref=toolbar" target="_blank" class="p-ask clearfix"><em class="icon"></em><span>提问题</span></a></dt>                      <dt><a href="http://write.blog.csdn.net/postedit?ref=toolbar" target="_blank" class="p-blog clearfix"><em class="icon"></em><span>写博客</span></a></dt>                      <dt><a href="http://u.download.csdn.net/upload?ref=toolbar" target="_blank" class="p-src clearfix"><em class="icon"></em><span>传资源</span></a></dt>                      <dt><a href="https://code.csdn.net/projects/new?ref=toolbar" target="_blank" class="c-obj clearfix"><em class="icon"></em><span>创建项目</span></a></dt>                      <dt><a href="https://code.csdn.net/snippets/new?ref=toolbar" target="_blank" class="c-code clearfix"><em class="icon"></em><span>创建代码片</span></a></dt>                    </dl>                  </div>                </div>              </li>              <li class="profile">                <div class="icon on-profile-icon"><img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/100x100.jpg" class="curr-icon-img">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                    <div class="bd">                      <dl class="clearfix">                        <dt class="pull-left img"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="avatar"><img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/100x100.jpg"></a></dt>                        <dd class="info" style="border: none;"><a target="_blank" href="http://my.csdn.net/?ref=toolbar" class="nickname"></a><a class="set-nick" href="https://passport.csdn.net/account/profile" target="_blank" rel="external">设置昵称<span class="write-icon"></span></a><span class="dec"><a class="fill-dec" href="http://my.csdn.net/" target="_blank">编辑自我介绍，让更多人了解你<span class="write-icon"></span></a></span></dd>                      </dl>                    </div>                    <div class="ft clearfix"><a target="_blank" href="http://my.csdn.net/my/account/changepwd?ref=toolbar" class="pull-left"><span class="icon-cog"></span>帐号设置</a><a href="https://passport.csdn.net/account/logout?ref=toolbar" target="_top" class="pull-left" style="margin-left:132px; width:18px; height:27px; white-space:nowrap; overflow:hidden;"><span class="icon-signout"></span><span class="out">退出</span></a></div>                  </div>                </div>              </li>              <li class="apps">                <div id="chasnew123" class="hasnew" style="display: none;"></div>                <div id="cappsarea123" class="icon on-apps-icon">                  <div class="wrap clearfix">                    <div class="curr-icon-wrap">                      <div class="curr-icon"></div>                    </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>社区</h5>                      </dt>                      <dd> <a href="http://blog.csdn.net/?ref=toolbar" target="_blank">博客</a></dd>                      <dd> <a href="http://bbs.csdn.net/?ref=toolbar" target="_blank">论坛</a></dd>                      <dd> <a href="http://download.csdn.net/?ref=toolbar" target="_blank">下载</a></dd>                      <dd> <a href="http://lib.csdn.net/?ref=toolbar" target="_blank">知识库</a></dd>                      <dd><a href="http://ask.csdn.net/?ref=toolbar" target="_blank">技术问答</a></dd>                      <dd><a href="http://geek.csdn.net/?ref=toolbar" target="_blank">极客头条</a></dd>                      <dd style="display:none"> <a href="http://hero.csdn.net/?ref=toolbar" target="_blank">英雄会</a></dd>                    </dl>                  </div>                  <div class="detail">                    <dl>                      <dt>                        <h5>服务</h5>                      </dt>                      <dd style="display:none"> <a href="http://job.csdn.net/?ref=toolbar" target="_blank">JOB<img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="http://edu.csdn.net/?ref=toolbar" target="_blank">学院<img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                      <dd> <a href="https://code.csdn.net/?ref=toolbar" target="_blank">CODE</a></dd>                      <dd> <a href="http://huiyi.csdn.net/?ref=toolbar" target="_blank">活动</a></dd>                      <dd> <a href="http://www.csto.com/?ref=toolbar" target="_blank">CSTO</a></dd>                      <dd> <a href="http://mall.csdn.net/?ref=toolbar" target="_blank">C币兑换<img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/new.gif" style="display: none; margin-top: -26px; width: 23px;"></a></dd>                    </dl>                  </div>                  <div class="detail last">                    <dl>                      <dt>                        <h5>俱乐部</h5>                      </dt>                      <dd> <a href="http://cto.csdn.net/?ref=toolbar" target="_blank">CTO俱乐部</a></dd>                      <dd> <a href="http://student.csdn.net/?ref=toolbar" target="_blank">高校俱乐部</a></dd>                    </dl>                  </div>                </div>              </div>            </li>            </ul>          </div>        </div>    </div>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/guyuealian" target="_blank" rel="external">guyuealian的博客</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/guyuealian?viewmode=contents" target="_blank" rel="external"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_mulu&#39;])">
+                    <img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/guyuealian?viewmode=list" target="_blank" rel="external"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_zhaiyao&#39;])">
+                    <img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/guyuealian/rss/list" target="_blank" rel="external"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_RSS&#39;])">
+                    <img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "guyuealian";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/guyuealian";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod="popu_3"> 
+
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/60960431" target="_blank" rel="external">
+<font color="red"> CSDN日报20170309——《程序员，杂草和大树，你选哪个》</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/turingbooks/article/details/58072986" target="_blank" rel="external">
+<font color="blue">程序员2月书讯
+</font></a>
+
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://edu.csdn.net/huiyiCourse/detail/284?ref=blog&amp;loc=r3" target="_blank" rel="external">
+<font color="red">【直播】用面向协议的思想简化网络请求
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/60961185" target="_blank" rel="external">
+<font color="blue">博客一键搬家活动开始啦
+</font></a>
+
+</div>                        </div>
+                        
+
+
+
+  
+<link href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/comment1.css" type="text/css" rel="stylesheet">
+<link href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/style1.css" type="text/css" rel="stylesheet">
+<script language="JavaScript" type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/jquery.cookie.js"></script>
+<script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/main.js"></script>
+<link rel="stylesheet" href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/markdown_views.css">
+<link rel="stylesheet" href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/category.css">
+<script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/MathJax.js"></script>
+<script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/web-storage-cache.min.js"></script>
+<script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/replace.min.js"></script>
+
+
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+      
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=TCP%e5%bb%ba%e7%ab%8b%e8%bf%9e%e6%8e%a5%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b%e5%92%8c%e9%87%8a%e6%94%be%e8%bf%9e%e6%8e%a5%e5%9b%9b%e6%ac%a1%e6%8f%a1%e6%89%8b&u=http://blog.csdn.net/guyuealian/article/details/52535294"
+
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="http://blog.csdn.net/guyuealian/article/details/52535294" target="_blank" rel="external">
+        TCP建立连接三次握手和释放连接四次握手            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href="http://www.csdn.net/tag/TCP%e5%bb%ba%e7%ab%8b%e8%bf%9e%e6%8e%a5" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">TCP建立连接</a><a href="http://www.csdn.net/tag/%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">三次握手</a><a href="http://www.csdn.net/tag/%e9%87%8a%e6%94%be%e8%bf%9e%e6%8e%a5" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">释放连接</a><a href="http://www.csdn.net/tag/%e5%9b%9b%e6%ac%a1%e6%8f%a1%e6%89%8b" target="_blank" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_tag&#39;]);">四次握手</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2016-09-14 14:55</span>
+            <span class="link_view" title="阅读次数">999人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="http://blog.csdn.net/guyuealian/article/details/52535294#comments" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_pinglun&#39;])" target="_blank" rel="external">评论</a>(0)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle(&#39;TCP%e5%bb%ba%e7%ab%8b%e8%bf%9e%e6%8e%a5%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b%e5%92%8c%e9%87%8a%e6%94%be%e8%bf%9e%e6%8e%a5%e5%9b%9b%e6%ac%a1%e6%8f%a1%e6%89%8b&#39;,&#39;52535294&#39;);return false;" title="收藏" target="_blank" rel="external">收藏</a></span>
+             <span class="link_report"> <a href="http://blog.csdn.net/guyuealian/article/details/52535294#report" onclick="javascript:report(52535294,2);return false;" title="举报" target="_blank" rel="external">举报</a></span>
+
+        </div>
+    </div>
+    <div class="embody" style="display:none" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[]}"></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label onclick="GetCategoryArticles(&#39;6207388&#39;,&#39;guyuealian&#39;,&#39;top&#39;,&#39;52535294&#39;);">
+                        <span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_fenlei&#39;]);">网络技术<em>（3）</em></span>
+                      <img class="arrow-down" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a href="http://blog.csdn.net/guyuealian/article/category/6207388" target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_6207388">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/category.js"></script>  
+        <div class="bog_copyright">         
+            <p class="copyright_p">版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div id="article_content" class="article_content">
+
+<h1 style="margin:0px; padding:0px; line-height:26px; text-align:center"><span style="font-family:SimSun"><span style="color:rgb(0,102,0)">TCP建立连接三次握手和释放连接四次握手</span><br>
+</span></h1>
+<div style="margin:0px; padding:0px">
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<div><span style="color:rgb(0,102,0)"><span style="font-family:SimSun"><span style="font-size:15px">&nbsp; &nbsp; 【<span style="color:rgb(51,102,153)"><a target="_blank" href="http://blog.csdn.net/guyuealian/article/details/52535294">尊重</a></span></span><span style="font-size:15px"><span style="color:rgb(51,102,153)"><a target="_blank" href="http://blog.csdn.net/guyuealian/article/details/52535294">原创，转载请注明出处</a></span></span><span style="font-size:15px">】http://blog.csdn.net/guyuealian/article/details/52535294</span></span></span></div>
+<div><strong><span style="color:rgb(0,102,0)"><span style="font-family:SimSun"><span style="font-size:24px"></span></span></span></strong></div>
+<span style="font-family:SimSun"><span style="color:rgb(0,102,0)">&nbsp; &nbsp; &nbsp;在谈及TCP建立连接和释放连接过程，先来简单认识一下</span><span style="color:rgb(0,102,0)">TCP报文段首部格式</span></span><span style="color:rgb(0,102,0); font-family:SimSun">的的几个名词</span><span style="color:rgb(0,102,0); font-family:SimSun">（这里只是简单说明，具体请查看相关教程）</span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0); font-family:SimSun"><img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/20160914140730874" width="500" height="300" alt=""><br>
+</span></div>
+<div style="font-size:14px; line-height:26px; margin:0px; padding:0px"><span style="font-family:SimSun"><span style="color:#006600">&nbsp; &nbsp;</span><span style="color:rgb(0,102,0)"><strong>&nbsp;序列号seq：</strong>占4个字节，用来标记数据段的</span><span style="color:#006600">顺序，TCP把连接中发送的所有数据字节都编上一个序号，第一个字节的编号由本地随机产生；给字节编上序号后，就给每一个报文段指派一个序号；序列号seq就是这个报文段中的第一个字节的数据编号。</span><br>
+<span style="color:#006600">&nbsp; </span><span style="color:rgb(0,102,0)"><strong>&nbsp; 确认号ack：</strong><span style="color:rgb(0,102,0); font-family:SimSun; font-size:14px; line-height:26px">占4个字节，</span></span><span style="color:#006600">期待收到对方下一个报文段的第一个数据字节的序号；序列号表示报文段携带数据的第一个字节的编号；而确认号指的是期望接收到下一个字节的编号；因此当前<span style="color:rgb(0,102,0); font-family:SimSun; font-size:14px; line-height:26px">报文段</span>最后一个字节的编号+1即为确认号。</span><br>
+<span style="color:rgb(0,102,0); font-size:14px; line-height:26px">&nbsp; &nbsp;&nbsp;</span><span style="color:rgb(0,102,0)"><strong>确认ACK：</strong></span><span style="color:#006600">占1位，仅当ACK=1时，确认号字段才有效。ACK=0时，确认号无效</span><br>
+<span style="color:rgb(0,102,0); font-size:14px; line-height:26px">&nbsp; &nbsp;<strong>&nbsp;</strong></span><span style="color:rgb(0,102,0)"><strong>同步SYN：</strong></span><span style="color:#006600">连接建立时用于同步序号。当SYN=1，ACK=0时表示：这是一个连接请求报文段。若同意连接，则在响应报文段中使得SYN=1，ACK=1。因此，SYN=1表示这是一个连接请求，或连接接受报文。</span><span style="color:#990000">SYN这个标志位只有在TCP建产连接时才会被置1，握手完成后SYN标志位被置0。</span><br>
+<span style="color:rgb(0,102,0); font-size:14px; line-height:26px">&nbsp; &nbsp;&nbsp;</span><span style="color:rgb(0,102,0)"><strong>终止FIN：</strong></span><span style="color:#006600">用来释放一个连接。FIN=1表示：此报文段的发送方的数据已经发送完毕，并要求释放运输连接</span><br>
+</span></div>
+<div style="font-size:14px; line-height:26px; margin:0px; padding:0px"><span style="font-family:SimSun"><span style="color:rgb(0,102,0)">&nbsp; &nbsp;</span><span style="color:#990000"> PS：<span style="font-size:14px; line-height:26px"><strong>ACK、<span style="font-size:14px; line-height:26px"><strong>SYN和<span style="font-size:14px; line-height:26px"><strong>FIN这些</strong></span></strong></span></strong></span>大写的单词表示<span style="font-size:14px; line-height:26px">标志位，其值要么是1，要么是0；<span style="font-size:14px; line-height:26px"><strong>ack、seq</strong></span>小写的单词表示序号。</span></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><strong><span style="font-family:SimSun">一、TCP建立连接三次握手</span></strong></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><strong><span style="font-family:SimSun">（1）、三次握手的过程</span></strong></span></div>
+<div style="line-height:26px; margin:0px; padding:0px"><span style="color:rgb(0,102,0); font-size:14px; font-family:SimSun; line-height:26px">&nbsp; &nbsp;1）主机A向主机B发送TCP连接请求数据包，其中包含主机A的初始序列号seq(A)=x。</span><span style="font-family:SimSun; line-height:26px"><span style="font-size:12px; color:#990000">（其中报文中同步标志位SYN=1，ACK=0，表示这是一个TCP连接请求数据报文；序号seq=x，表明传输数据时的第一个数据字节的序号是x）</span></span><span style="color:rgb(0,102,0); font-size:14px; font-family:SimSun; line-height:26px">；<br>
+&nbsp; &nbsp;2）主机B收到请求后，会发回连接确认数据包。</span><span style="font-family:SimSun; line-height:26px"><span style="font-size:12px; color:#990000">（其中确认报文段中，标识位SYN=1，ACK=1，表示这是一个TCP连接响应数据报文，并含主机B的初始序列号seq(B)=y，以及主机B对主机A初始序列号的确认号ack(B)=seq(A)+1=x+1）</span><br>
+<span style="color:rgb(0,102,0); font-size:14px">&nbsp; &nbsp;3）第三次，主机A收到主机B的确认报文后，还需作出确认，即发送一个序列号seq(A)=x+1；确认号为ack(A)=y+1的报文；</span><br>
+</span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/20160914100821925" alt="" style="font-family:SimSun; color:rgb(0,102,0)"></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><strong><span style="font-family:SimSun">（2）为什么需要第三次握手?</span></strong></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="font-family:SimSun"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px">&nbsp; &nbsp; &nbsp;还要再发送一次确认是为了，防止已失效的连接请求报文段突然又传到了B，因而产生错误。</span><br style="color:rgb(0,102,0); font-size:14px; line-height:26px">
+<span style="color:rgb(0,102,0); font-size:14px; line-height:26px">&nbsp; &nbsp; &nbsp;已失效的报文段：正常情况下：A发出连接请求，但因为丢失了，故而不能收到B的确认。于是A重新发出请求，然后收到确认，建立连接，数据传输完毕后，释放连接，A发了2个，一个丢掉，一个到达，没有“已失效的报文段”</span><br style="color:rgb(0,102,0); font-size:14px; line-height:26px">
+<span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px">&nbsp; &nbsp; &nbsp;</span>但是，某种情况下，A的第一个在某个节点滞留了，延误到达，本来这是一个早已失效的报文段，但是在A发送第二个，并且得到B的回应，建立了连接以后，这个报文段竟然到达了，于是B就认为，A又发送了一个新的请求，于是发送确认报文段，同意建立连接，假若没有三次的握手，那么这个连接就建立起来了（有一个请求和一个回应），此时，A收到B的确认，但A知道自己并没有发送建立连接的请求，因为不会理睬B的这个确认，于是呢，A也不会发送任何数据，而B呢却以为新的连接建立了起来，一直等待A发送数据给自己，此时B的资源就被白白浪费了。但是采用三次握手的话，A就不发送确认，那么B由于收不到确认，也就知道并没有要求建立连接。</span><br>
+</span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="font-family:SimSun"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px">&nbsp; &nbsp; &nbsp;简而言之：</span></span></span><span style="color:rgb(0,102,0); font-family:宋体">第三次握手，主机</span><span style="color:rgb(0,102,0); font-family:SimSun">A</span><span style="color:rgb(0,102,0); font-family:宋体">发送一次确认是为了防止：</span><span style="font-family:SimSun; color:rgb(255,0,0)">如果客户端迟迟没有收到服务器返回的确认报文，这时他会放弃连接，重新启动一条连接请求；但问题是：服务器不知客户端没收到，所以他会收到两个连接请求，白白浪费了一条连接开销。</span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun"><br>
+</span></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><strong><span style="font-family:SimSun">二、TCP释放连接四次握手</span></strong></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><strong><span style="font-family:SimSun">（1）四次握手过程</span></strong></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun">　　假设主机A为客户端，主机B为服务器，其释放TCP连接的过程如下：</span></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun">&nbsp; &nbsp; 1） 关闭客户端到服务器的连接：首先客户端A发送一个FIN，用来关闭客户到服务器的数据传送，然后等待服务器的确认。其中终止标志位FIN=1，序列号seq=u</span></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun">&nbsp;　 2） 服务器收到这个FIN，它发回一个ACK，确认号ack为收到的序号加1。<br>
+&nbsp; 　3） <span style="color:rgb(0,102,0); font-size:14px; line-height:26px">关闭服务器到客户端的连接：也是</span>发送一个FIN给客户端。<br>
+&nbsp;　 4） 客户段收到FIN后，并发回一个ACK报文确认，并将确认序号seq设置为收到序号加1。<br>
+</span></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px">&nbsp; &nbsp; &nbsp;首先进行关闭的一方将执行主动关闭，而另一方执行被动关闭。</span><br>
+</span></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><strong><span style="font-family:SimSun"><img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/20160914101234549" alt="" style="color:rgb(0,102,0); font-size:14px; font-weight:bold; line-height:26px"><br>
+</span></strong></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun">&nbsp; &nbsp; 　主机A发送FIN后，进入终止等待状态， 服务器B收到主机A连接释放报文段后，就立即给主机A发送确认，然后<span style="color:rgb(0,102,0); font-size:14px; line-height:26px">服务器B</span>就进入close-wait状态，此时TCP服务器进程就通知高层应用进程，因而从A到B的连接就释放了。此时是“<span style="color:rgb(0,102,0); font-size:14px; line-height:26px">半关闭</span>”状态。即A不可以发送给B，但是B可以发送给A。<br>
+　　此时，若B没有数据报要发送给A了，其应用进程就通知TCP释放连接，然后发送给A连接释放报文段，并等待确认。A发送确认后，进入time-wait，注意，此时TCP连接还没有释放掉，然后经过时间等待计时器设置的2MSL后，A才进入到close状态。</span></span></span></div>
+<div style="font-size:14px; line-height:26px; margin:0px; padding:0px"><span style="font-family:SimSun"><span style="font-size:14px; line-height:26px"><br>
+<strong style="color:rgb(0,102,0)">（2）为什么要等待<span style="color:rgb(0,102,0); font-size:14px; line-height:26px">2MSL</span>呢?</strong><br>
+<span style="color:#006600">&nbsp; &nbsp; MSL即Maximum Segment Lifetime，也就是</span><strong><span style="color:#990000">最大</span></strong></span><span style="color:#990000"><strong>报文生存时间</strong></span><span style="color:#006600">，他是任何报文在网络上存在的最长时间，超过这个时间报文将被丢弃。引用《TCP/IP详解》中的话：“它(MSL)是任何报文段被丢弃前在网络内的最长时间”。RFC
+ 793中规定MSL为2分钟，实际应用中常用的是30秒，1分钟和2分钟等。</span></span></div>
+<div style="font-size:14px; margin:0px; padding:0px"><span style="font-family:SimSun; line-height:21px"><span style="color:#006600">&nbsp; &nbsp;&nbsp;TCP的TIME_WAIT状态需要等待2MSL，当TCP的一端发起主动关闭，在发出最后一个ACK包后，即第3次握手完成后发送了第四次握手的ACK包后就进入了TIME_WAIT状态，必须在此状态上停留两倍的MSL时间，等待2MSL时间主要目的是</span><span style="color:#990000">怕最后一个ACK包对方没收到，那么对方在超时后将重发第三次握手的FIN包，主动关闭端接到重发的FIN包后可以再发一个ACK应答包。在TIME_WAIT状态时两端的端口不能使用，要等到2MSL时间结束才可继续使用。当连接处于2MSL等待阶段时任何迟到的报文段都将被丢弃。</span><span style="color:#006600">不过在实际应用中可以通过设置SO_REUSEADDR选项达到不必等待2MSL时间结束再使用此端口。</span></span></div>
+<div style="font-size:14px; line-height:26px; margin:0px; padding:0px"><span style="font-family:SimSun; color:#006600">&nbsp; &nbsp; 概括原因如下：</span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun">&nbsp; &nbsp; ①、为了保证A发送的最后一个ACK报文段能够到达B。即最后这个确认报文段很有可能丢失，那么B会超时重传，然后A再一次确认，同时启动2MSL计时器，如此下去。如果没有等待时间，发送完确认报文段就立即释放连接的话，B就无法重传了（连接已被释放，任何数据都不能出传了），因而也就收不到确认，就无法按照步骤进入CLOSE状态，即必须收到确认才能close。<br>
+&nbsp; &nbsp; ②、防止“已失效的连接请求报文段”出现在连接中。经过2MSL，那些在这个连接持续的时间内，产生的所有报文段就可以都从网络中消失。即在这个连接释放的过程中会有一些无效的报文段滞留在楼阁结点，但是呢，经过2MSL这些无效报文段就肯定可以发送到目的地，不会滞留在网络中。这样的话，在下一个连接中就不会出现上一个连接遗留下来的请求报文段了。<br>
+可以看出：B结束TCP连接的时间比A早一点，因为B收到确认就断开连接了，而A还得等待2MSL.</span></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun"><br>
+</span></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun"></span></span></span>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><strong>（3）为什么TCP释放连接需要四次？</strong></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)">&nbsp; &nbsp; &nbsp; TCP建立连接要进行三次握手，而断开连接要进行四次。这是由于TCP的半关闭造成的。因为TCP连接是全双工的(即数据可在两个方向上同时传递)所以进行关闭时每个方向上都要单独进行关闭。这个单方向的关闭就叫半关闭。当一方完成它的<strong>数据发送任务</strong>，就发送一个FIN来向另一方通告将要终止这个方向的连接。</span></div>
+<div style="font-size:14px; line-height:26px; margin:0px; padding:0px"><span style="color:rgb(0,102,0)">&nbsp;&nbsp;<strong>&nbsp; &nbsp;注意：</strong></span></div>
+<div style="font-size:14px; line-height:26px; margin:0px; padding:0px"><span style="color:#990000">&nbsp; &nbsp; &nbsp;1）<span style="color:rgb(153,0,0); font-size:14px; line-height:26px"><strong>发送了FIN只是表示这端不能继续发送数据(应用层不能再调用send发送)，但是还可以接收数据。</strong></span>收到一个 FIN只意味着这一方向上没有数据流动，一个TCP连接在收到一个FIN后仍能发送数据，比如：如主机A收到主机B的FIN断开TCP连接请求，只是表示主机B已经发送完数据，主机A收到FIN后作出应答，并终止这个方向的数据传输，此时处于半关闭状态。但是主机A仍然可以发送数据的，只有当主机A发送完数据并发送FIN给主机B时，主机B才停止这个方向的数据传输，并关闭TCP连接。</span></div>
+<div style="font-size:14px; line-height:26px; margin:0px; padding:0px"><span style="color:rgb(153,0,0)"><span style="color:rgb(153,0,0); font-size:14px; line-height:26px">&nbsp; &nbsp; &nbsp;2）</span>在很多时候，TCP连接的断开都会由TCP层自动进行，例如你CTRL+C终止你的程序，TCP连接依然会正常关闭，你可以写代码试试。<br>
+</span></div>
+<div><span style="color:#990000"><br>
+</span></div>
+<br>
+</div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun"><br>
+</span></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun"><br>
+</span></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="font-family:SimSun"><br>
+</span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><strong><span style="font-family:SimSun">参考资料：</span></strong></span></span></div>
+<div style="font-size:14px; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-size:14px; line-height:26px"><span style="font-family:SimSun">《TCP协议三次握手连接四次握手断开和DOS攻击》http://blog.csdn.net/fw0124/article/details/7452695</span></span></span></div>
+<div style="font-size:14px; font-family:Arial; line-height:26px; color:rgb(51,51,51); margin:0px; padding:0px">
+<span style="color:rgb(0,102,0)"><span style="color:rgb(0,102,0); font-family:Arial; font-size:14px; line-height:26px"><br>
+</span></span></div>
+</div>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="http://blog.csdn.net/guyuealian/article/details/52535294#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important" target="_blank" rel="external"></a>
+<a href="http://blog.csdn.net/guyuealian/article/details/52535294#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间" style="background-position:0 -52px !important" target="_blank" rel="external"></a>
+<a href="http://blog.csdn.net/guyuealian/article/details/52535294#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博" style="background-position:0 -104px !important" target="_blank" rel="external"></a>
+<a href="http://blog.csdn.net/guyuealian/article/details/52535294#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博" style="background-position:0 -260px !important" target="_blank" rel="external"></a>
+<a href="http://blog.csdn.net/guyuealian/article/details/52535294#" class="bds_renren" data-cmd="renren" title="分享到人人网" style="background-position:0 -208px !important" target="_blank" rel="external"></a>
+<a href="http://blog.csdn.net/guyuealian/article/details/52535294#" class="bds_weixin" data-cmd="weixin" title="分享到微信" style="background-position:0 -1612px !important" target="_blank" rel="external"></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/blog_detail.css">
+
+    
+<!--172.16.140.15-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/bds_s_v2.js"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+
+        <div id="digg" articleid="52535294">
+            <dl id="btnDigg" class="digg digg_disable" onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>0</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable" onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" target="_blank" rel="external">&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" target="_blank" rel="external">&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;]);location.href=&#39;/guyuealian/article/details/52525724&#39;;">上一篇</span><a href="http://blog.csdn.net/guyuealian/article/details/52525724" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_shangyipian&#39;])" target="_blank" rel="external">内存可见性和原子性：Synchronized和Volatile的比较</a></li>
+                <li class="next_article"><span onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;]);location.href=&#39;/guyuealian/article/details/52583520&#39;;">下一篇</span><a href="http://blog.csdn.net/guyuealian/article/details/52583520" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_xiayipian&#39;])" target="_blank" rel="external">机器学习中的相似性度量</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article" style="display:none">
+                <h4>我的同类文章</h4>
+                <div class="similar_c" style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span style="cursor:pointer" onclick="GetCategoryArticles(&#39;6207388&#39;,&#39;guyuealian&#39;,&#39;foot&#39;,&#39;52535294&#39;);">网络技术<em>（3）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141" style="max-height:195px;">
+                        <a href="http://blog.csdn.net/" style="display:none" target="_blank" rel="external">http://blog.csdn.net</a>
+                        <ul class="similar_list fl">                          
+                        </ul>
+
+                        <ul class="similar_list fr">                           
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+    <script type="text/javascript">
+        $(function () {
+            GetCategoryArticles('6207388', 'guyuealian','foot','52535294');
+        });
+    </script>
+      
+</div>
+
+    <div>
+            <script type="text/javascript">
+                /*博客内容页下方Banner1-728*90，创建于2016-12-13*/
+                var cpro_id = "u2843949";
+            </script>
+            <script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/c.js"></script><div id="BAIDU_SSP__wrapper_u2843949_0"><iframe id="iframeu2843949_0" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/xcpm.html" width="728" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:728px;height:90px" allowtransparency="true"></iframe></div>
+     </div>
+
+<div id="suggest"></div>
+         <script language="javascript" type="text/javascript">     
+             $(function(){
+                 $.get("/guyuealian/svc/GetSuggestContent/52535294",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/replace.css">
+
+<div id="relate" data-mod="popu_218" class="tracking-ad">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c">
+        </div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived"> 
+    <div class="embody embody_b" id="libkeyparent" style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "52535294",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+            
+            setEduLoc();
+
+            function setEduLoc() {               
+                var edus = $("#adCollege div dd a");
+                if (edus.length == 0) {
+                    setTimeout(function () {
+                        setEduLoc();
+                    }, 500);
+                }
+                else {
+                    var eduLoc = "?ref=blog&loc=0";
+                    $.each(edus, function (index,item) {
+                        var href = $(this).attr("href") + eduLoc;
+                        $(this).attr("href", href);
+                    });
+                }
+            }
+
+        </script> 
+    <div class="tracking-ad" data-mod="popu_84"><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/4358?ref=blog&amp;loc=0" title="C++socket网络编程大全实战http服务器(支持php)视频课程" strategy="v4:content" target="_blank">C++socket网络编程大全实战http服务器(支持php)视频课程</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/3862?ref=blog&amp;loc=0" title="Oracle11g服务器、客户端的安装和plsql developer（一次成功）" strategy="v4:content" target="_blank">Oracle11g服务器、客户端的安装和plsql developer（一次成功）</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/4224?ref=blog&amp;loc=0" title="第07章-网络通信协议（OSI、TCP、UDP、IP、ARP、ICMP等）" strategy="v4:content" target="_blank">第07章-网络通信协议（OSI、TCP、UDP、IP、ARP、ICMP等）</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/4308?ref=blog&amp;loc=0" title="python网络编程（socket）" strategy="v4:content" target="_blank">python网络编程（socket）</a></dd><dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px; white-space: nowrap;"><a href="http://edu.csdn.net/course/detail/4283?ref=blog&amp;loc=0" title="2017最新Linux集群全网服务器数据备份方案超细实战课" strategy="v4:content" target="_blank">2017最新Linux集群全网服务器数据备份方案超细实战课</a></dd></div></div>  
+
+    
+     <div id="res" data-mod="popu_36" class="tracking-ad" style="width: 42%;float: left;margin-right: 30px;"></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'TCP建立连接三次握手和释放连接四次握手' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+
+    <div id="ad_cen">        
+                    <script type="text/javascript">
+                        /*博客内容页下方Banner-728*90，创建于2014-7-3*/
+                        var cpro_id = "u1607657";
+                    </script>
+                    <script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/c.js"></script><div id="BAIDU_SSP__wrapper_u1607657_0"><iframe id="iframeu1607657_0" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/xcpm(1).html" width="728" height="90" align="center,center" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" style="border:0;vertical-align:bottom;margin:0;width:728px;height:90px" allowtransparency="true"></iframe></div>
+    </div>  
+
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '52535294';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top" style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop" style="display: none;" title="返回顶部" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_huidaodingbu&#39;])">         
+         <img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="display:none"></div>
+  <script language="javascript" type="text/javascript">     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/guyuealian/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/async_new.js"></script>      
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/guyuealian" target="_blank">
+    <img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/1_guyuealian.jpg" title="访问我的空间" style="max-width:90%">
+    </a>
+    <br>
+    <span><a href="http://my.csdn.net/guyuealian" class="user_name" target="_blank">guyuealian</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]" target="_blank" rel="external"></a>
+
+ <a href="javascript:void(0);" class="letter" title="[发私信]" onclick="window.open(&#39;http://msg.csdn.net/letters/model?receiver=guyuealian&#39;,&#39;_blank&#39;,&#39;height=350,width=700&#39;);_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_sixin&#39;])" target="_blank" rel="external"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a target="_blank">
+                                                    <img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="1">
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>109047次</span></li>
+    <li>积分：<span>1907</span> </li>    
+    <li>等级： <span style="position:relative;display:inline-block;z-index:1">
+            <img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/blog4.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：1907 </div>
+        </span>  </li>
+    <li>排名：<span>第17387名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>72篇</span></li>
+    <li>转载：<span>30篇</span></li>
+    <li>译文：<span>1篇</span></li>
+    <li>评论：<span>50条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字"></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog">
+        <input type="hidden" name="q" id="inputQ">
+        <input type="hidden" name="t" value="blog">
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/5603353" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">经验分享</a><span>(19)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/5603355" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">Android</a><span>(34)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6239404" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">机器学习</a><span>(15)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/5645377" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">java开发</a><span>(24)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6049617" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">C / C++</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6075936" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">SQL数据库</a><span>(5)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6183534" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">求职面试</a><span>(3)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6207388" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">网络技术</a><span>(4)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6299855" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">Hadoop</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6428363" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">Python</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6544860" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">软件编程</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6652939" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">其他文章</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6655975" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">Matlab</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="http://blog.csdn.net/guyuealian/article/category/6758433" onclick="_gaq.push([&#39;_trackEvent&#39;,&#39;function&#39;, &#39;onclick&#39;, &#39;blog_articles_wenzhangfenlei&#39;]); " target="_blank" rel="external">信号处理</a><span>(1)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="http://blog.csdn.net/guyuealian/article/month/2017/03" target="_blank" rel="external">2017年03月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2017/01" target="_blank" rel="external">2017年01月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/12" target="_blank" rel="external">2016年12月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/11" target="_blank" rel="external">2016年11月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/10" target="_blank" rel="external">2016年10月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/09" target="_blank" rel="external">2016年09月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/08" target="_blank" rel="external">2016年08月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/07" target="_blank" rel="external">2016年07月</a><span>(14)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/06" target="_blank" rel="external">2016年06月</a><span>(12)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/05" target="_blank" rel="external">2016年05月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/04" target="_blank" rel="external">2016年04月</a><span>(10)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/03" target="_blank" rel="external">2016年03月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/02" target="_blank" rel="external">2016年02月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2016/01" target="_blank" rel="external">2016年01月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2015/12" target="_blank" rel="external">2015年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/guyuealian/article/month/2015/07" target="_blank" rel="external">2015年07月</a><span>(17)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/51113133" title="Java实现数组反转翻转的方法" target="_blank" rel="external">Java实现数组反转翻转的方法</a><span>(8052)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/51119499" title="Java单链表反转 详细过程" target="_blank" rel="external">Java单链表反转 详细过程</a><span>(7564)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/51543263" title="Android Studio出现UnsupportedClassVersionError Unsupported major.minor version  52.0" target="_blank" rel="external">Android Studio出现UnsupportedClassVersionError Unsupported major.minor version  52.0</a><span>(5151)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/50763109" title="Eclipse没有server 配置Tomcat" target="_blank" rel="external">Eclipse没有server 配置Tomcat</a><span>(4980)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/50968368" title="2016年华为校招上机考试试题答案" target="_blank" rel="external">2016年华为校招上机考试试题答案</a><span>(4650)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/51354514" title="华为网络技术大赛模拟题答案详解" target="_blank" rel="external">华为网络技术大赛模拟题答案详解</a><span>(4216)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/51172105" title="Android MVC模式" target="_blank" rel="external">Android MVC模式</a><span>(3523)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/46770387" title="Tomcat 输入http://localhost:8080打不开网页的解决方法" target="_blank" rel="external">Tomcat 输入http://localhost:8080打不开网页的解决方法</a><span>(3470)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/50825381" title="解决安装XMind出现Invalid Configuration Location The configuration area at &#39;C:\Users\Administrator\Applicat" target="_blank" rel="external">解决安装XMind出现Invalid Configuration Location The configuration area at 'C:\Users\Administrator\Applicat</a><span>(3060)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/50762996" title="Eclipse配置Tomcat服务器，通用方法" target="_blank" rel="external">Eclipse配置Tomcat服务器，通用方法</a><span>(2890)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/51187240" title="Sysnoise5.6安装教程和破解方法" target="_blank" rel="external">Sysnoise5.6安装教程和破解方法</a><span>(20)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/51558560" title="解决 Successfully created project &#39;&#39; on GitHub, but initial push failed: Could not read from remote re" target="_blank" rel="external">解决 Successfully created project '' on GitHub, but initial push failed: Could not read from remote re</a><span>(7)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/50825381" title="解决安装XMind出现Invalid Configuration Location The configuration area at &#39;C:\Users\Administrator\Applicat" target="_blank" rel="external">解决安装XMind出现Invalid Configuration Location The configuration area at 'C:\Users\Administrator\Applicat</a><span>(4)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/50968368" title="2016年华为校招上机考试试题答案" target="_blank" rel="external">2016年华为校招上机考试试题答案</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/51113133" title="Java实现数组反转翻转的方法" target="_blank" rel="external">Java实现数组反转翻转的方法</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/51119499" title="Java单链表反转 详细过程" target="_blank" rel="external">Java单链表反转 详细过程</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/50779810" title="MyEclipse配置Tomcat没有Tomcat选项没有小猫图" target="_blank" rel="external">MyEclipse配置Tomcat没有Tomcat选项没有小猫图</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/50787035" title="Eclipse运行Applet没有显示图片,getCodeBase,getDocumentBase" target="_blank" rel="external">Eclipse运行Applet没有显示图片,getCodeBase,getDocumentBase</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/50763109" title="Eclipse没有server 配置Tomcat" target="_blank" rel="external">Eclipse没有server 配置Tomcat</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/guyuealian/article/details/46955329" title="Resources类中getString (int ResID)与getText (int ResID)的区别" target="_blank" rel="external">Resources类中getString (int ResID)与getText&nbsp;(int ResID)的区别</a><span>(1)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/blogdevteam/article/details/60576936" target="_blank">* CSDN日报20170306——《程序员转行为什么这么难》</a></li>
+<li><a href="http://blog.csdn.net/hejjunlin/article/details/60480109" target="_blank">* 直播技术总结（四）音视频数据压缩及编解码基础 </a></li>
+<li><a href="http://blog.csdn.net/qibin0506/article/details/60478869" target="_blank">* 第一个PWA程序-聊天室</a></li>
+<li><a href="http://blog.csdn.net/cyq1162/article/details/60578454" target="_blank">* 一个想法照进现实-《IT连》创业项目：万事开头难</a></li>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/54879836" target="_blank">* Android"挂逼"修炼之行---防自动抢红包外挂原理解析</a></li>
+
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="http://blog.csdn.net/guyuealian/article/details/51721167#comments" target="_blank" rel="external">修改overflow图标 修改ActionBar的三个点的图标</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/cano_don3909" class="user_name" target="_blank" rel="external">cano_don3909</a>:
+Overflow设置好后，前面的那个搜索的图标没有了
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/guyuealian/article/details/50825381#comments" target="_blank" rel="external">解决安装XMind出现Invalid Configuration Location The configuration area at 'C:\Users\Administrator\Applicat</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/zongshanyue" class="user_name" target="_blank" rel="external">zongshanyue</a>:
+干得漂亮
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/guyuealian/article/details/53708042#comments" target="_blank" rel="external">聚类算法-最大最小距离算法(实例+代码)</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sinat_30627027" class="user_name" target="_blank" rel="external">sinat_30627027</a>:
+可以吧matlab源码发给我不   谢谢啦没币下载
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/guyuealian/article/details/53708042#comments" target="_blank" rel="external">解决安装XMind出现Invalid Configuration Location The configuration area at 'C:\Users\Administrator\Applicat</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_35007540" class="user_name" target="_blank" rel="external">qq_35007540</a>:
+太感谢了
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/guyuealian/article/details/50779810#comments" target="_blank" rel="external">MyEclipse配置Tomcat没有Tomcat选项没有小猫图</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/lvliwei12345" class="user_name" target="_blank" rel="external">lvliwei12345</a>:
+感谢，有用很纳闷myeclipse2016这么新的myeclipse版本中竟然没有集成Tomcat插...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/guyuealian/article/details/51187240#comments" target="_blank" rel="external">Sysnoise5.6安装教程和破解方法</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/sinat_37106813" class="user_name" target="_blank" rel="external">sinat_37106813</a>:
+楼主，还在吗，给个下载链接吧
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/guyuealian/article/details/51558560#comments" target="_blank" rel="external">解决 Successfully created project '' on GitHub, but initial push failed: Could not read from remote re</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/gdfgdfasdas" class="user_name" target="_blank" rel="external">gdfgdfasdas</a>:
+非常感谢，一直报这个错，终于解决了
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/guyuealian/article/details/51558560#comments" target="_blank" rel="external">解决安装XMind出现Invalid Configuration Location The configuration area at 'C:\Users\Administrator\Applicat</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/u014113816" class="user_name" target="_blank" rel="external">u014113816</a>:
+完美解决,涨知识了  这个解释的很清楚啊
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/guyuealian/article/details/51113133#comments" target="_blank" rel="external">Java实现数组反转翻转的方法</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/qq_36681035" class="user_name" target="_blank" rel="external">qq_36681035</a>:
+不对吧，两个数组是什么意思。for(int x=0,y=arr.length-1;x&lt;y;x++,y...
+    </p>
+    </li>
+    <li>
+   
+         <a href="http://blog.csdn.net/guyuealian/article/details/51113133#comments" target="_blank" rel="external">解决安装XMind出现Invalid Configuration Location The configuration area at 'C:\Users\Administrator\Applicat</a>
+    <p style="margin:0px;"><a href="http://blog.csdn.net/LHH92" class="user_name" target="_blank" rel="external">LHH92</a>:
+顶顶顶顶！！！竟然没人评论？！！！
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+
+                   <!-- 广告位开始 --> 
+                    <ins data-revive-zoneid="190" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins> 
+                    <!-- 广告位结束 -->
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/cnick.js"></script>
+<script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/showblogmedal.ashx"></script>
+<script type="text/javascript" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/JavaScript1.js"></script><link rel="stylesheet" type="text/css" href="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/pub_footer_2014.css"><div class="pub_fo"><div id="pub_footerall" class="pub_footer_new"><dl><dt></dt> <dd class="foot_sub_menu"><a href="http://www.csdn.net/company/about.html" target="_blank">公司简介</a><span>|</span><a href="http://www.csdn.net/company/recruit.html" target="_blank">招贤纳士</a><span>|</span><a href="http://www.csdn.net/company/marketing.html" target="_blank">广告服务</a><span>|</span><a href="http://www.csdn.net/company/contact.html" target="_blank">联系方式</a><span>|</span><a href="http://www.csdn.net/company/statement.html" target="_blank">版权声明</a><span>|</span><a href="http://www.csdn.net/company/layer.html" target="_blank">法律顾问</a><span>|</span><a href="mailto:webmaster@csdn.net" target="_blank" rel="external">问题报告</a><span>|</span><a target="_blank" href="http://www.csdn.net/friendlink.html">合作伙伴</a><span>|</span><a href="http://bbs.csdn.net/forums/Service" target="_blank">论坛反馈</a></dd><dd class="foot_contact"><a href="javascript:void(0);" target="_blank" class="qq">网站客服</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2251809102&amp;site=qq&amp;menu=yes" target="_blank" class="qq">杂志客服</a><a href="http://e.weibo.com/csdnsupport/profile" target="_blank" class="weibo">微博客服</a><a href="mailto:webmaster@csdn.net" class="email" title="联系邮箱" target="_blank" rel="external">webmaster@csdn.net</a><span class="phone" title="服务热线">400-600-2320</span><span class="interval">|</span><span>北京创新乐知信息技术有限公司 版权所有</span><span class="interval">|</span><span>江苏知之为计算机有限公司</span><span class="interval">|</span><span>江苏乐知网络技术有限公司</span></dd><dd class="foot_copyright"><span>京&nbsp;ICP&nbsp;证&nbsp;09002463&nbsp;号</span><span class="interval">|</span><span>Copyright © 1999-2016, CSDN.NET, All Rights Reserved&nbsp;</span><a href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202001032100010" target="_blank"><img src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/gongshang_logos.gif" alt="GongshangLogo" title=""></a></dd></dl></div></div><script id="noticeScript" type="text/javascript" btnid="header_notice_num" wrapid="note1" count="5" subcount="5" src="./TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/notify.js"></script></div></body></html>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/28/前端跨域问题及解决方案/" rel="next" title="前端跨域问题及其解决方案">
+                <i class="fa fa-chevron-left"></i> 前端跨域问题及其解决方案
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/11/TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/hm/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/IMG_0604.JPG"
+               alt="Elaine" />
+          <p class="site-author-name" itemprop="name">Elaine</p>
+          <p class="site-description motion-element" itemprop="description">Accept what was and what is, and you'll have more positive energy to pursue what will be.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">社区</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">服务</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">俱乐部</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">
+                guyuealian的博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text"></span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">
+        
+        TCP建立连接三次握手和释放连接四次握手            
+        
+    </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">TCP建立连接三次握手和释放连接四次握手
+</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">我的同类文章</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number"></span> <span class="nav-text">参考知识库</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Elaine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

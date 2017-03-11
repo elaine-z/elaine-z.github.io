@@ -1,0 +1,699 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content=".dp-highlighter { font-family: &quot;Consolas&quot; , &quot;Courier New&quot; , Courier, mono, serif; font-size: 12px; background-color: #E7E5DC; width: 99%; overflow: auto; margin: 18px 0 18px 0 !important; padding-top:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2017/03/11/TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/default/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content=".dp-highlighter { font-family: &quot;Consolas&quot; , &quot;Courier New&quot; , Courier, mono, serif; font-size: 12px; background-color: #E7E5DC; width: 99%; overflow: auto; margin: 18px 0 18px 0 !important; padding-top:">
+<meta property="og:updated_time" content="2017-03-11T15:29:50.638Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content=".dp-highlighter { font-family: &quot;Consolas&quot; , &quot;Courier New&quot; , Courier, mono, serif; font-size: 12px; background-color: #E7E5DC; width: 99%; overflow: auto; margin: 18px 0 18px 0 !important; padding-top:">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title>  | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T23:29:50+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        .dp-highlighter { font-family: "Consolas" , "Courier New" , Courier, mono, serif; font-size: 12px; background-color: #E7E5DC; width: 99%; overflow: auto; margin: 18px 0 18px 0 !important; padding-top: 1px; text-align: left; }
+
+/* clear styles */
+.dp-highlighter ol, .dp-highlighter ol li, .dp-highlighter ol li span { margin: 0; padding: 0; border: none; }
+
+.dp-highlighter a, .dp-highlighter a:hover { background: none; border: none; padding: 0; margin: 0; }
+
+.dp-highlighter .bar { padding-left: 45px; }
+
+.dp-highlighter.collapsed .bar, .dp-highlighter.nogutter .bar { padding-left: 0px; }
+
+.dp-highlighter ol { list-style: decimal; /* for ie */ background-color: #fff; margin: 0px 0px 1px 45px !important; /* 1px bottom margin seems to fix occasional Firefox scrolling */ padding: 0px; color: #5C5C5C; }
+
+.dp-highlighter.nogutter ol, .dp-highlighter.nogutter ol li { list-style: none !important; margin-left: 0px !important; }
+
+.dp-highlighter ol li, .dp-highlighter .columns div { list-style: decimal-leading-zero; /* better look for others, override cascade from OL */ list-style-position: outside !important; border-left: 3px solid #6CE26C; background-color: #F8F8F8; color: #5C5C5C; padding: 0 3px 0 10px !important; margin: 0 !important; line-height: 150%; }
+
+.dp-highlighter.nogutter ol li, .dp-highlighter.nogutter .columns div { border: 0; }
+
+.dp-highlighter .columns { background-color: #F8F8F8; color: gray; overflow: hidden; width: 100%; }
+
+.dp-highlighter .columns div { padding-bottom: 5px; }
+
+.dp-highlighter ol li.alt { background-color: #FFF; color: inherit; }
+
+.dp-highlighter ol li span { color: black; background-color: inherit; }
+
+/* Adjust some properties when collapsed */
+
+.dp-highlighter.collapsed ol { margin: 0px; }
+
+.dp-highlighter.collapsed ol li { display: none; }
+
+/* Additional modifications when in print-view */
+
+.dp-highlighter.printing { border: none; }
+
+.dp-highlighter.printing .tools { display: none !important; }
+
+.dp-highlighter.printing li { display: list-item !important; }
+
+/* Styles for the tools */
+
+.dp-highlighter .tools { padding: 3px 8px 3px 10px; font: 9px Verdana, Geneva, Arial, Helvetica, sans-serif; color: silver; background-color: #f8f8f8; padding-bottom: 10px; border-left: 3px solid #6CE26C; }
+
+.dp-highlighter.nogutter .tools { border-left: 0; }
+
+.dp-highlighter.collapsed .tools { border-bottom: 0; }
+
+.dp-highlighter .tools a { font-size: 9px; color: #a0a0a0; background-color: inherit; text-decoration: none; margin-right: 10px; }
+
+.dp-highlighter .tools a:hover { color: red; background-color: inherit; text-decoration: underline; }
+
+/* About dialog styles */
+
+.dp-about { background-color: #fff; color: #333; margin: 0px; padding: 0px; }
+.dp-about table { width: 100%; height: 100%; font-size: 11px; font-family: Tahoma, Verdana, Arial, sans-serif !important; }
+.dp-about td { padding: 10px; vertical-align: top; }
+.dp-about .copy { border-bottom: 1px solid #ACA899; height: 95%; }
+.dp-about .title { color: red; background-color: inherit; font-weight: bold; }
+.dp-about .para { margin: 0 0 4px 0; }
+.dp-about .footer { background-color: #ECEADB; color: #333; border-top: 1px solid #fff; text-align: right; }
+.dp-about .close { font-size: 11px; font-family: Tahoma, Verdana, Arial, sans-serif !important; background-color: #ECEADB; color: #333; width: 60px; height: 22px; }
+
+/* Language specific styles */
+
+.dp-highlighter .comment, .dp-highlighter .comments { color: #008200; background-color: inherit; }
+.dp-highlighter .string { color: blue; background-color: inherit; }
+.dp-highlighter .keyword { color: #069; font-weight: bold; background-color: inherit; }
+.dp-highlighter .preprocessor { color: gray; background-color: inherit; }
+
+/*xml*/
+.dp-xml .cdata { color: #ff1493; }
+.dp-xml .tag, .dp-xml .tag-name { color: #993300; font-weight: bold; }
+.dp-xml .attribute { color: red; }
+.dp-xml .attribute-value { color: blue; }
+/*sql*/
+.dp-sql .func { color: #ff1493; }
+.dp-sql .op { color: #808080; }
+/*ruby*/
+.dp-rb .symbol { color: #a70; }
+.dp-rb .variable { color: #a70; font-weight: bold; }
+/*python*/
+.dp-py .builtins { color: #ff1493; }
+.dp-py .magicmethods { color: #808080; }
+.dp-py .exceptions { color: brown; }
+.dp-py .types { color: brown; font-style: italic; }
+.dp-py .commonlibs { color: #8A2BE2; font-style: italic; }
+/*java*/
+.dp-j .annotation { color: #646464; }
+.dp-j .number { color: #C00000; }
+/*delphi*/
+.dp-delphi .number { color: blue; }
+.dp-delphi .directive { color: #008284; }
+.dp-delphi .vars { color: #000; }
+/*css*/
+.dp-css .value { color: black; }
+.dp-css .important { color: red; }
+/*csharp*/
+.dp-c .vars { color: #d00; }
+/*cpp*/
+.dp-cpp .datatypes { color: #2E8B57; font-weight: bold; }
+
+
+/*tools image*/
+.dp-highlighter .bar a { background-repeat:no-repeat; background-position:left top; display:inline-block; width:16px; height:16px; padding:1px; text-indent:-2000px; _width:0px; _overflow:hidden; _padding-left:16px; _text-indent:0px; }
+.dp-highlighter .bar a:hover { border:solid 1px #ccc; text-decoration:none; padding:0px; background-repeat:no-repeat;_padding-left:16px;}
+.dp-highlighter .bar a.ExpandSource {}
+.dp-highlighter .bar a.ViewSource { background-image:url(images/default/ico_plain.gif); }
+.dp-highlighter .bar a.CopyToClipboard { background-image:url(images/default/ico_copy.gif);}
+.dp-highlighter .bar a.PrintSource { display:none; }
+.dp-highlighter .bar a.About { display:none;}
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/11/TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/style/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/11/TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/share/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/IMG_0604.JPG"
+               alt="Elaine" />
+          <p class="site-author-name" itemprop="name">Elaine</p>
+          <p class="site-description motion-element" itemprop="description">Accept what was and what is, and you'll have more positive energy to pursue what will be.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Elaine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

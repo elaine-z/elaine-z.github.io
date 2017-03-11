@@ -1,0 +1,588 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="@CHARSET &quot;UTF-8&quot;;#bdshare ul,#bdshare_s ul,#bdshare ul li,#bdshare_s ul li,#bdshare_l_c ul li,#bdshare_m_c ul li,#bdshare_pop ul,#bdshare_pop ul li{list-style:none;margin:0;padding:0}#bdshare{_overflo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2017/03/11/TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/bdsstyle/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="@CHARSET &quot;UTF-8&quot;;#bdshare ul,#bdshare_s ul,#bdshare ul li,#bdshare_s ul li,#bdshare_l_c ul li,#bdshare_m_c ul li,#bdshare_pop ul,#bdshare_pop ul li{list-style:none;margin:0;padding:0}#bdshare{_overflo">
+<meta property="og:updated_time" content="2017-03-11T15:29:50.897Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="@CHARSET &quot;UTF-8&quot;;#bdshare ul,#bdshare_s ul,#bdshare ul li,#bdshare_s ul li,#bdshare_l_c ul li,#bdshare_m_c ul li,#bdshare_pop ul,#bdshare_pop ul li{list-style:none;margin:0;padding:0}#bdshare{_overflo">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title>  | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T23:29:50+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        @CHARSET "UTF-8";#bdshare ul,#bdshare_s ul,#bdshare ul li,#bdshare_s ul li,#bdshare_l_c ul li,#bdshare_m_c ul li,#bdshare_pop ul,#bdshare_pop ul li{list-style:none;margin:0;padding:0}#bdshare{_overflow-x:hidden;z-index:999999;padding-bottom:2px;font-size:12px;float:left;text-align:left!important;zoom:1}#bdshare a,#bdshare_s a,#bdshare_pop a{text-decoration:none;cursor:pointer}#bdshare a:hover,#bdshare_s a:hover,#bdshare_pop a:hover{color:#333;opacity:.8;filter:alpha(opacity=80)}#bdshare img{border:0;margin:0;padding:0;cursor:pointer}#bdshare h6,#bdshare_s h6{width:100%;font:14px/22px '宋体';text-indent:.5em;font-weight:700;border-top:1px solid #fbfbfb;border-bottom:1px solid #f2f1f1;background-color:#f6f6f6;float:left;padding:5px 0;margin:0}#bdshare ul,#bdshare_s ul{width:98%;float:left;padding:8px 0;margin-left:2px;overflow:hidden}#bdshare ul li,#bdshare_s ul li{width:47%;_width:41%;float:left;margin:4px 2px}#bdshare ul li a,#bdshare_s ul li a{color:#565656;font:12px '宋体';display:block;width:98%;padding:6px 0;text-indent:2.4em;*text-indent:1.8em;_text-indent:1.8em;border:1px solid #fff}#bdshare ul li a:hover,#bdshare_s ul li a:hover{background-color:#f3f3f3;border:1px solid #eee;-webkit-border-radius:3px;-moz-border-radius:3px}#bdshare p,#bdshare_s p{width:100%;height:21px;font:12px '宋体';border-top:1px solid #f2f1f1;background-color:#f8f8f8;float:left;padding:0;margin:0}#bdshare p a,#bdshare_s p a{width:auto;text-align:right;float:right;padding:0 5px}#bdshare_l{width:212px;position:absolute;top:0;background:#fff;text-align:left}#bdshare_l_c{width:210px;float:left;border:1px solid #e9e9e9;text-align:left}#bdshare_l_c ul li{width:47%;height:26px;float:left;margin:2px}#bdshare_l_c ul li a{background:url(../images/is.png?cdnversion=20131219) no-repeat;height:auto!important}#bdshare_m{width:132px;float:right;position:absolute;zoom:1;background:#fff}#bdshare_m_c{width:130px;float:left;border:1px solid #e9e9e9;overflow:hidden;background:#fff}#bdshare_m_c ul li{width:97%;_width:90%;float:left;margin:2px}#bdshare_m_c ul li a{background:url(../images/is.png?cdnversion=20131219) no-repeat;height:auto!important}#bdshare_l,#bdshare_m{-webkit-box-shadow:0 0 7px #eee;-moz-box-shadow:0 0 7px #eee;z-index:99999}#bdshare_pop{width:300px;border:6px solid #8f8f8f;padding:0;background:#f6f6f6;position:absolute;z-index:1000000;text-align:left}#bdshare_pop{-webkit-border-radius:5px;-moz-border-radius:5px}#bdshare_pop{-webkit-box-shadow:0 0 7px #aaa;-moz-box-shadow:0 0 7px #aaa}#bdshare_pop div{border:1px solid #e9e9e9;float:left;overflow:hidden;text-align:left}#bdshare_pop h5{width:100%;height:28px;color:#626262;font:14px/28px '宋体';font-weight:700;text-indent:.5em;float:left;margin:0;overflow:hidden}#bdshare_pop h5 b{width:22px;height:23px;background:url(../images/pop_c.gif?cdnversion=20120720) no-repeat 0 0;cursor:pointer;position:absolute;right:8px;top:4px}#bdshare_pop ul{width:100%;height:256px;background:#fff;float:left;padding:8px 0;margin:0;border-top:1px solid #f2f1f1;border-bottom:1px solid #f2f1f1;overflow:auto;overflow-x:hidden}#bdshare_pop ul li{width:130px;float:left;padding:2px;margin-left:6px;_margin-left:3px;height:29px;overflow:hidden}#bdshare_pop ul li a{background:url(../images/is.png?cdnversion=20131219) no-repeat;color:#565656;font:12px '宋体';display:block;width:75%;padding:6px 0 6px 28px;border:1px solid #fff}#bdshare_pop ul li a:hover{background-color:#f3f3f3;border:1px solid #eee;-webkit-border-radius:3px;-moz-border-radius:3px}#bdshare_pop p{width:100%;font:12px '宋体';float:left;padding:5px 0 8px;margin:0;overflow:hidden}#bdshare_pop p a{width:auto;text-align:right;float:right;padding:0 5px}#bdshare_l_c p a.goWebsite,#bdshare_m_c p a.goWebsite,#bdshare_pop p a.goWebsite{text-align:right;background:url(../images/pi.gif?cdnversion=20120720) no-repeat 0 center;line-height:16px;padding-left:12px;color:#8c8c8c}#bdshare_l_c p a.goWebsite:hover,#bdshare_m_c p a.goWebsite:hover,#bdshare_pop p a.goWebsite:hover{color:#00a9e0}span.bds_more{background:url(../images/is.png?cdnversion=20131219) no-repeat 0 5px!important}span.bds_more,.bds_tools a{display:block;font-family:'宋体',Arial;height:16px;float:left;cursor:pointer;padding-top:6px;padding-bottom:3px;padding-left:22px}.bds_tools a{background:url(../images/is.png?cdnversion=20131219) no-repeat}.bds_tools_32 a{background:url(../images/is_32.png?cdnversion=20131219) no-repeat;width:37px;height:37px;display:block;float:left;margin-right:3px;text-indent:-100em;cursor:pointer}.bds_tools_32 span.bds_more{background:url(../images/is_32.png?cdnversion=20131219) no-repeat 0 5px!important;width:37px;height:32px;text-indent:-100em;padding-left:0}.bds_tools_24 a{background:url(../images/is_24.png?cdnversion=20131219) no-repeat;width:29px;height:29px;display:block;float:left;margin-right:3px text-indent:-100em;padding-left:0;cursor:pointer}.bds_tools_24 span.bds_more{background:url(../images/is_24.png?cdnversion=20131219) no-repeat 0 5px!important;width:29px;height:24px;text-indent:-100em;padding-left:0}.bds_more{background-image:url(../images/is.png?cdnversion=20131219)!important;background-position:0 4px!important}span.bds_nopic,.bds_tools_32 span.bds_nopic,.bds_tools_24 span.bds_nopic{background-image:none!important;padding-left:3px!important}.bdshare_b img{float:left}.bdshare_b a.shareCount,.bds_tools a.shareCount,.bds_tools_32 a.shareCount,.bds_tools_24 a.shareCount{float:left;background:url(../images/sc.png?cdnversion=20120720) no-repeat!important;margin:0;padding:0;text-align:center;padding-left:5px;color:#454545;font-family:'宋体'!important}.bdshare_b a.shareCount,.bds_tools_24 a.shareCount{width:39px;height:24px;background-position:0 0;font-size:12px;line-height:24px;margin-left:3px}.bdshare_b a.shareCount:hover,.bds_tools_24 a.shareCount:hover{color:#454545!important;background-position:-44px 0!important;opacity:1!important;filter:alpha(opacity=100)!important}.bds_tools a.shareCount{width:37px;height:16px;background-position:0 -30px!important;margin-top:5px;overflow:hidden;font-size:12px;line-height:16px}.bds_tools a.shareCount:hover{color:#454545!important;background-position:-42px -30px!important;opacity:1!important;filter:alpha(opacity=100)!important}.bds_tools_32 a.shareCount{width:43px;height:32px;background-position:0 -60px!important;margin-top:5px;overflow:hidden;font-size:14px;line-height:32px;text-indent:0!important}.bds_tools_32 a.shareCount:hover{color:#454545!important;background-position:-48px -60px!important;background-position:-48px -60px;opacity:1!important;filter:alpha(opacity=100)!important}.bds_tools_24 a.shareCount{margin-top:5px}.bds_qzone{background-position:0 -75px!important}.bds_tsina{background-position:0 -115px!important}.bds_bdhome{background-position:0 -155px!important}.bds_renren{background-position:0 -195px!important}.bds_tqq{background-position:0 -235px!important}.bds_kaixin001{background-position:0 -275px!important}.bds_tqf{background-position:0 -315px!important}.bds_hi{background-position:0 -355px!important}.bds_douban{background-position:0 -395px!important}.bds_tsohu{background-position:0 -435px!important}.bds_msn{background-position:0 -475px!important}.bds_qq{background-position:0 -515px!important}.bds_taobao{background-position:0 -555px!important}.bds_tieba{background-position:0 -595px!important}.bds_sohu{background-position:0 -675px!important}.bds_t163{background-position:0 -715px!important}.bds_qy{background-position:0 -755px!important}.bds_tfh{background-position:0 -795px!important}.bds_hx{background-position:0 -835px!important}.bds_fx{background-position:0 -875px!important}.bds_ff{background-position:0 -915px!important}.bds_xg{background-position:0 -955px!important}.bds_ty{background-position:0 -995px!important}.bds_s51{background-position:0 -1035px!important}.bds_fbook{background-position:0 -1115px!important}.bds_twi{background-position:0 -1155px!important}.bds_ms{background-position:0 -1195px!important}.bds_deli{background-position:0 -1235px!important}.bds_s139{background-position:0 -1275px!important}.bds_iguba{background-position:0 -1315px!important}.bds_linkedin{background-position:0 -1354px!important}.bds_copy{background-position:0 -1393px!important}.bds_ifeng{background-position:0 -1431px!important}.bds_tuita{background-position:0 -1470px!important}.bds_meilishuo{background-position:0 -1549px!important}.bds_mogujie{background-position:0 -1589px!important}.bds_diandian{background-position:0 -1629px!important}.bds_huaban{background-position:0 -1669px!important}.bds_leho{background-position:0 -1709px!important}.bds_wealink{background-position:0 -1749px!important}.bds_duitang{background-position:0 -1789px!important}.bds_thx{background-position:0 -1829px!important}.bds_mail{background-position:0 -1870px!important}.bds_print{background-position:0 -1910px!important}.bds_baidu{background-position:0 -1950px!important}.bds_share189{background-position:0 -1990px!important}.bds_youdao{background-position:0 -2030px!important}.bds_mshare{background-position:0 -2070px!important}.bds_mop{background-position:0 -2110px!important}.bds_yaoshi{background-position:0 -2150px!important}.bds_bdxc{background-position:0 -2190px!important}.bds_sqq{background-position:0 -2230px!important}.bds_sdo{background-position:0 -2270px!important}.bds_qingbiji{background-position:0 -2310px!important}.bds_people{background-position:0 -2350px!important}.bds_kanshou{background-position:0 -2390px!important}.bds_xinhua{background-position:0 -2430px!important}.bds_yaolan{background-position:0 -2470px!important}.bds_isohu{background-position:0 -2510px!important}.bds_bdysc{background-position:0 -2550px!important}.bds_ibaidu{background-position:0 -2590px!important}#bdshare .bds_fl5,#bdshare .bds_buzz,#bdshare .bds_zx{display:none}
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/11/TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/job_reco/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/11/TCP建立连接三次握手和释放连接四次握手 - guyuealian的博客 - 博客频道 - CSDN.NET_files/html/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/IMG_0604.JPG"
+               alt="Elaine" />
+          <p class="site-author-name" itemprop="name">Elaine</p>
+          <p class="site-description motion-element" itemprop="description">Accept what was and what is, and you'll have more positive energy to pursue what will be.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">53</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Elaine</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
