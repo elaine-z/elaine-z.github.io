@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/12/WEB应用中的SESSION知多少/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="cookie与session详解">
-<meta property="og:updated_time" content="2017-03-12T08:25:06.013Z">
+<meta property="og:updated_time" content="2017-03-12T08:28:25.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WEB应用中的SESSION知多少？">
 <meta name="twitter:description" content="cookie与session详解">
@@ -373,8 +373,8 @@
 <h1 id="Session的用法"><a href="#Session的用法" class="headerlink" title="Session的用法"></a>Session的用法</h1><p>Session 对象<br>可以使用 Session 对象存储特定用户会话所需的信息。这样，当用户在应用程序的 Web 页之间跳转时，存储在 Session 对象中的变量将不会丢失，而是在整个用户会话中一直存在下去。 </p>
 <p>当用户请求来自应用程序的 Web 页时，如果该用户还没有会话，则 Web 服务器将自动创建一个 Session 对象。当会话过期或被放弃后，服务器将终止该会话。 </p>
 <p>Session 对象最常见的一个用法就是存储用户的首选项。例如，如果用户指明不喜欢查看图形，就可以将该信息存储在 Session 对象中。 </p>
-<p>注意：会话状态仅在支持 cookie 的浏览器中保留。<br>语法<br><code>Session.collection|property|method</code><br>集合<br>Contents 包含已用脚本命令添加到会话中的项目。 </p>
-<p>StaticObjects 包含通过 <object> 标记创建的并给定了会话作用域的对象。<br>属性<br>CodePage 将用于符号映射的代码页。<br>LCID 现场标识。<br>SessionID 返回用户的会话验证。<br>Timeout 应用程序会话状态的超时时限，以分钟为单位。<br>方法<br>Abandon 该方法破坏 Session 对象并释放其资源。<br>事件<br>asa 文件中声明下列事件的脚本。<br><code>Session_OnEnd</code><br><code>Session_OnStart</code></object></p>
+<p>注意：会话状态仅在支持 cookie 的浏览器中保留。<br>语法<br><code>Session.collection|property|method</code><br>集合 Contents 包含已用脚本命令添加到会话中的项目。 </p>
+<p>StaticObjects 包含通过 <object> 标记创建的并给定了会话作用域的对象。<br>属性 CodePage 将用于符号映射的代码页。<br>LCID 现场标识。<br>SessionID 返回用户的会话验证。<br>Timeout 应用程序会话状态的超时时限，以分钟为单位。<br>方法 Abandon 该方法破坏 Session 对象并释放其资源。<br>事件 asa 文件中声明下列事件的脚本。<br><code>Session_OnEnd</code><br><code>Session_OnStart</code></object></p>
 <p>注释<br>您可以在 Session 对象中存储值。存储在 Session 对象中的信息在会话及会话作用域内有效。</p>
 <p>转载自：[WEB应用中的SESSION知多少?]: <a href="http://www.blogjava.net/ohyeah928/archive/2010/01/27/310952.html" target="_blank" rel="external">http://www.blogjava.net/ohyeah928/archive/2010/01/27/310952.html</a></p>
 
