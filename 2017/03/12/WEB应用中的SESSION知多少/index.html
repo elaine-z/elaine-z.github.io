@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/12/WEB应用中的SESSION知多少/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="cookie与session详解">
-<meta property="og:updated_time" content="2017-03-12T08:28:25.619Z">
+<meta property="og:updated_time" content="2017-03-12T08:33:59.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WEB应用中的SESSION知多少？">
 <meta name="twitter:description" content="cookie与session详解">
@@ -327,7 +327,7 @@
 <p>如果能够提供一些按需生成的动态信息会使web变得更加有用，就像给有线电视加上点播功能一样。这种需求一方面迫使HTML逐步添加了表单、脚本、DOM等客户端行为，另一方面在服务器端则出现了CGI规范以响应客户端的动态请求，作为传输载体的HTTP协议也添加了文件上载、cookie这些特性。其中cookie的作用就是为了解决HTTP协议无状态的缺陷所作出的努力。至于后来出现的Session机制则是又一种在客户端与服务器之间保持状态的解决方案。</p>
 <h1 id="Cookies"><a href="#Cookies" class="headerlink" title="Cookies"></a>Cookies</h1><p>Cookie是WEB上最常用的跟踪用户会话方式，当  Cookie被禁止后，一般都用URL重写来跟踪会话。Cookie是一种由服务器发送给客户的片段信息，存储在客户环境中，并在客户所有的对服务器的请求中都要发回它。就好比我们在用IE登陆某个电子购物商城时，IE在得到商品列表页面的 同时还收到Set-Cookie应答头信息，我们打开一个Cookie文件，我们所看到的格式一般都是：</p>
 <p>`Cookie：NAME=VALUE；<br>Comment=COMMENT；<br>Domain=DOMAINNMAM；<br>Max-age=SECOND；<br>Path=PATH；<br>secure；<br>Version=1*DIGIT ‘</p>
-<p>其中NAME值对（值对间用分号分隔）是必须的，其余都是可选的。最重要的信息当然也在所必须的值对里了，VALUE是NAME的值，也是这个Cookie的标识，Max-age定义了Cookie的最长生存时间，其它几个可选值对可参阅<a href="http://www.faqs.org/rfcs/rfc2109.html。当我们选购了某种商品，向服务器发送选购清单时，会自动在你的请求信息头里加上NAME值对,如果Cookie被禁止，则用URL重写方式在URL请求地址上附加NAME值对。当Web服务器收到这个请求后，会检查该Cookie是否存在，然后相应的跟踪会话。从以上分析不难理解，其实Web服务器跟踪会话就靠Set-Cookie头信息，跟踪NAME值对进行身份验证。假如我们用非Web终端接收Web服务器的响应信息，从中解析出Cookie头信息，当再次向Web服务器发送请求时附加上解析出的Cookie信息，Web服务器据此不就可以进行身份认证了吗？" target="_blank" rel="external">http://www.faqs.org/rfcs/rfc2109.html。当我们选购了某种商品，向服务器发送选购清单时，会自动在你的请求信息头里加上NAME值对,如果Cookie被禁止，则用URL重写方式在URL请求地址上附加NAME值对。当Web服务器收到这个请求后，会检查该Cookie是否存在，然后相应的跟踪会话。从以上分析不难理解，其实Web服务器跟踪会话就靠Set-Cookie头信息，跟踪NAME值对进行身份验证。假如我们用非Web终端接收Web服务器的响应信息，从中解析出Cookie头信息，当再次向Web服务器发送请求时附加上解析出的Cookie信息，Web服务器据此不就可以进行身份认证了吗？</a> </p>
+<p>其中NAME值对（值对间用分号分隔）是必须的，其余都是可选的。最重要的信息当然也在所必须的值对里了，VALUE是NAME的值，也是这个Cookie的标识，Max-age定义了Cookie的最长生存时间，其它几个可选值对可参阅<code>http://www.faqs.org/rfcs/rfc2109.html</code>。当我们选购了某种商品，向服务器发送选购清单时，会自动在你的请求信息头里加上NAME值对,如果Cookie被禁止，则用URL重写方式在URL请求地址上附加NAME值对。当Web服务器收到这个请求后，会检查该Cookie是否存在，然后相应的跟踪会话。从以上分析不难理解，其实Web服务器跟踪会话就靠Set-Cookie头信息，跟踪NAME值对进行身份验证。假如我们用非Web终端接收Web服务器的响应信息，从中解析出Cookie头信息，当再次向Web服务器发送请求时附加上解析出的Cookie信息，Web服务器据此不就可以进行身份认证了吗？ </p>
 <p>Cookies中文是饼干的意思，对于为何引用Cookies，从网上查找了一些资料：<br>在浏览器与WEB服务器之间是使用HTTP协议进行通信的，当某个用户发出页面请求时，WEB服务器只是简单的进行响应，然后就关闭与该用户的连接。因此当一个请求发送到WEB服务器时，无论其是否是第一次来访，服务器都会把它当作第一次来对待，这样的不好之处可想而知。为了弥补这个缺陷，Netscape开发出了cookie这个有效的工具来保存某个用户的识别信息，因此人们昵称为“小甜饼”。cookies是一种WEB服务器通过浏览器在访问者的硬盘上存储信息的手段：Netscape Navigator使用一个名为cookies.txt本地文件保存从所有站点接收的Cookie信息；而IE浏览器把Cookie信息保存在类似于c:\Internet 临时文件\的目录下。当用户再次访问某个站点时，服务端将要求浏览器查找并返回先前发送的Cookie信息，来识别这个用户。Cookies给网站和用户带来的好处： </p>
 <ol>
 <li>Cookie能使站点跟踪特定访问者的访问次数、最后访问时间和访问者进入站点的路径 </li>
@@ -374,9 +374,9 @@
 <p>当用户请求来自应用程序的 Web 页时，如果该用户还没有会话，则 Web 服务器将自动创建一个 Session 对象。当会话过期或被放弃后，服务器将终止该会话。 </p>
 <p>Session 对象最常见的一个用法就是存储用户的首选项。例如，如果用户指明不喜欢查看图形，就可以将该信息存储在 Session 对象中。 </p>
 <p>注意：会话状态仅在支持 cookie 的浏览器中保留。<br>语法<br><code>Session.collection|property|method</code><br>集合 Contents 包含已用脚本命令添加到会话中的项目。 </p>
-<p>StaticObjects 包含通过 <object> 标记创建的并给定了会话作用域的对象。<br>属性 CodePage 将用于符号映射的代码页。<br>LCID 现场标识。<br>SessionID 返回用户的会话验证。<br>Timeout 应用程序会话状态的超时时限，以分钟为单位。<br>方法 Abandon 该方法破坏 Session 对象并释放其资源。<br>事件 asa 文件中声明下列事件的脚本。<br><code>Session_OnEnd</code><br><code>Session_OnStart</code></object></p>
+<p>StaticObjects 包含通过 <object> 标记创建的并给定了会话作用域的对象。<br>属性 CodePage 将用于符号映射的代码页。<br>LCID 现场标识。<br>SessionID 返回用户的会话验证。<br>Timeout 应用程序会话状态的超时时限，以分钟为单位。<br>方法 Abandon 该方法破坏 Session 对象并释放其资源。<br>事件<br>asa 文件中声明下列事件的脚本。<br><code>Session_OnEnd</code><br><code>Session_OnStart</code></object></p>
 <p>注释<br>您可以在 Session 对象中存储值。存储在 Session 对象中的信息在会话及会话作用域内有效。</p>
-<p>转载自：[WEB应用中的SESSION知多少?]: <a href="http://www.blogjava.net/ohyeah928/archive/2010/01/27/310952.html" target="_blank" rel="external">http://www.blogjava.net/ohyeah928/archive/2010/01/27/310952.html</a></p>
+<p>转载自：<a href="http://www.blogjava.net/ohyeah928/archive/2010/01/27/310952.html" target="_blank" rel="external">http://www.blogjava.net/ohyeah928/archive/2010/01/27/310952.html</a></p>
 
       
     </div>
